@@ -46,6 +46,16 @@ dependencies {
     // kotlin扩展（可选）
     api "com.gyf.immersionbar:immersionbar-ktx:$versions.immersionbar"
 
+    //viewmodel
+    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
+
+    // okhttp3
+    api 'com.squareup.okhttp3:okhttp:4.9.0'
+    api 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+    //打印日志
+    api 'com.jakewharton.timber:timber:4.7.1'
+
     //testImplementation : 为 test 添加依赖
     testImplementation 'junit:junit:4.13.2'
     //androidTestImplementation : 为 androidTest 添加依赖

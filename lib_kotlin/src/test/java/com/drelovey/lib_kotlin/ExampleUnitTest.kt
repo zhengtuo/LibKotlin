@@ -1,4 +1,4 @@
-package com.zt.libkotlin
+package com.drelovey.lib_kotlin
 
 import org.junit.Test
 

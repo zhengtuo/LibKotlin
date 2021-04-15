@@ -1,4 +1,4 @@
-package com.zt.libkotlin
+package com.drelovey.lib
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
