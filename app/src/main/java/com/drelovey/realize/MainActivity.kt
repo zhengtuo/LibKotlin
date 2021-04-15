@@ -1,4 +1,4 @@
-package com.drelovey.lib
+package com.drelovey.realize
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.drelovey.lib
+package com.drelovey.realize
 
 import org.junit.Test
 

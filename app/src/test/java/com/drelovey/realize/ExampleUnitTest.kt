@@ -1,4 +1,4 @@
-package com.drelovey.lib_kotlin
+package com.drelovey.realize
 
 import org.junit.Test
 

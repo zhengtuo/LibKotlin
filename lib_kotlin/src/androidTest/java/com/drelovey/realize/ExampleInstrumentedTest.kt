@@ -1,4 +1,4 @@
-package com.drelovey.lib_kotlin
+package com.drelovey.realize
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
