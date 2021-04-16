@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //layout_toolbar
+    <color name="color_f">#FFFFFF</color>
+    <color name="color_3">#333333</color>
+    <color name="color_d">#DDDDDD</color>
+
+</resources>

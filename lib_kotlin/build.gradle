@@ -1,18 +1,13 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.1"
-
+    compileSdkVersion versions.compile
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -23,6 +18,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        dataBinding true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -36,9 +36,25 @@ dependencies {
     //kotlin
     //noinspection DifferentStdlibGradleVersion
     api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    api 'androidx.core:core-ktx:1.3.2'
-    api 'androidx.appcompat:appcompat:1.2.0'
+    //ktx插件
+    api "androidx.core:core-ktx:$versions.ktx"
+    //AppCompatActivity()
+    api "androidx.appcompat:appcompat:$versions.appcompat"
+    api "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
     api 'com.google.android.material:material:1.1.0'
+
+    //databinding
+    kapt "com.android.databinding:compiler:$versions.plugin"
+
+    //viewmodel
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+    //创建viewmodel
+    api "androidx.fragment:fragment-ktx:$versions.fragment"
+
+    //bindables
+    api("com.github.skydoves:bindables:$versions.bindables") {
+        exclude group: "com.google.android.material"
+    }
 
     //immersionbar -- android 4.4以上沉浸式实现
     api "com.gyf.immersionbar:immersionbar:$versions.immersionbar"
@@ -47,15 +63,16 @@ dependencies {
     // kotlin扩展（可选）
     api "com.gyf.immersionbar:immersionbar-ktx:$versions.immersionbar"
 
-    //viewmodel
-    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
-
     // okhttp3
-    api 'com.squareup.okhttp3:okhttp:4.9.0'
-    api 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    api "com.squareup.okhttp3:okhttp:$versions.okhttp3"
+    api "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
+
+    //glide图片加载
+    api "com.github.bumptech.glide:glide:$versions.glide"
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
 
     //打印日志
-    api 'com.jakewharton.timber:timber:4.7.1'
+    api "com.jakewharton.timber:timber:$versions.timber"
 
     //testImplementation : 为 test 添加依赖
     testImplementation 'junit:junit:4.13.2'
