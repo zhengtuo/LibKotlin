@@ -1,4 +1,4 @@
-package com.drelovey.realize.ui.model
+package com.drelovey.realize.ui.main.model
 
 import javax.inject.Inject
 

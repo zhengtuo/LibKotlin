@@ -3,6 +3,7 @@ package com.drelovey.app
 import android.app.Application
 import android.content.Context
 import com.drelovey.common.base.delegate.ApplicationDelegate
+import com.drelovey.common.utils.LibUtils
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -36,6 +37,6 @@ open class DreloveyApp : Application() {
      * 初始化app相关
      */
     private fun initApp() {
-
+        LibUtils.context = this
     }
 }

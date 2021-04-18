@@ -19,6 +19,10 @@
             type="Integer" />
 
         <variable
+            name="elevation"
+            type="Integer" />
+
+        <variable
             name="Icon"
             type="Integer" />
 
@@ -64,6 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@{backgroundColor ?? @color/color_f}"
+        android:elevation="@{elevation ?? 0}"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
@@ -81,8 +86,8 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@{title}"
                 android:textColor="@{titleColor ?? @color/color_3}"
-                android:textSize="@{titleSize==0?utils.sp2px(14):utils.sp2px(titleSize) }"
-                android:textStyle='@{textStyle==null?"bold":textStyle}' />
+                android:textStyle="bold"
+                app:size="@{titleSize ??14}" />
 
         </androidx.appcompat.widget.Toolbar>
 

@@ -6,6 +6,7 @@ import android.text.Html
 import android.text.TextUtils
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.drelovey.common.utils.LibUtils
 
 /**
  *
@@ -14,6 +15,13 @@ import androidx.databinding.BindingAdapter
  * @CreateDate: 2020/1/21 16:41
  */
 object TextViewAdapter {
+
+    @BindingAdapter("size")
+    @JvmStatic
+    fun setSize(textView: TextView, size: Float) {
+        textView.textSize = size
+    }
+
     @BindingAdapter("bold")
     @JvmStatic
     fun setBold(textView: TextView, bold: Boolean) {

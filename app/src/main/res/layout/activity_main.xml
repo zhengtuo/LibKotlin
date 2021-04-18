@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.drelovey.realize.ui.viewModel.MainVM" />
+            type="com.drelovey.realize.ui.main.viewModel.MainVM" />
 
     </data>
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.view.MainActivity">
+        tools:context=".ui.main.view.MainActivity">
 
         <include
             android:id="@+id/toolbar"
@@ -23,7 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hideLine="@{true}"
-            app:title="@{vm.title}" />
+            app:title="@{vm.title}"
+            app:elevation = "@{3}"/>
 
         <Button
             android:layout_width="wrap_content"
