@@ -71,6 +71,9 @@ dependencies {
     api "com.github.bumptech.glide:glide:$versions.glide"
     kapt "com.github.bumptech.glide:compiler:$versions.glide"
 
+    // whatIf  Fluent expressions of Kotlin for handling single if-else statements, nullable, collections, and boolean.
+    api "com.github.skydoves:whatif:$versions.whatIfVersion"
+
     //打印日志
     api "com.jakewharton.timber:timber:$versions.timber"
 

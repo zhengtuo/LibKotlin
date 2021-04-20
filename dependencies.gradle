@@ -43,5 +43,9 @@ ext.versions = [
 
         timber          : "4.7.1",
 
+        whatIfVersion   : '1.1.0',
+
+        balloon          : '1.2.7',
+
 
 ]

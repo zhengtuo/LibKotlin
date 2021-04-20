@@ -66,5 +66,7 @@ dependencies {
     api "com.alibaba:arouter-api:$versions.arouter"
     kapt "com.alibaba:arouter-compiler:$versions.arouter"
 
+    implementation "com.github.skydoves:balloon:$versions.balloon"
+
     implementation project(":lib_kotlin")
 }
