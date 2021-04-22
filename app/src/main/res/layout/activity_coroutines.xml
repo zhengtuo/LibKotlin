@@ -11,7 +11,7 @@
 
         <variable
             name="vm"
-            type="com.drelovey.realize.ui.lib.viewModel.WhatIfVM" />
+            type="com.drelovey.realize.ui.lib.viewModel.CoroutinesVM" />
 
     </data>
 
@@ -31,12 +31,12 @@
             app:title="@{vm.title}" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/dp_100"
-            android:text="button" />
+            android:onClick="learn"
+            android:text="开始"
+            />
 
     </LinearLayout>
 </layout>

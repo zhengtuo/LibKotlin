@@ -24,6 +24,8 @@
 
         <activity android:name=".ui.lib.view.WhatIfActivity" />
 
+        <activity android:name=".ui.lib.view.CoroutinesActivity" />
+
     </application>
 
 </manifest>

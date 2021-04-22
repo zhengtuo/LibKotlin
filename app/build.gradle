@@ -66,7 +66,14 @@ dependencies {
     api "com.alibaba:arouter-api:$versions.arouter"
     kapt "com.alibaba:arouter-compiler:$versions.arouter"
 
-    implementation "com.github.skydoves:balloon:$versions.balloon"
+    //room(数据库)
+    api "androidx.room:room-runtime:$versions.room"
+    kapt "androidx.room:room-compiler:$versions.room"
+
+    api "androidx.room:room-ktx:$versions.room"
+    api "androidx.room:room-rxjava2:$versions.room"
+
+    api "com.github.skydoves:balloon:$versions.balloon"
 
     implementation project(":lib_kotlin")
 }

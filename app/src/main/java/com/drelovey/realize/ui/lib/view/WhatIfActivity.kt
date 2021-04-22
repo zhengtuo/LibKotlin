@@ -17,8 +17,8 @@ import com.skydoves.whatif.whatIfNotNull
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-//ConstraintLayout使用详解
-@Route(path = RouterPath.PATH_CONSTRAINT)
+//WhatIf使用详解
+@Route(path = RouterPath.PATH_WHATIF)
 @AndroidEntryPoint
 class WhatIfActivity : BaseActivity<ActivityWhatifBinding, WhatIfVM>(R.layout.activity_whatif) {
 
@@ -30,6 +30,7 @@ class WhatIfActivity : BaseActivity<ActivityWhatifBinding, WhatIfVM>(R.layout.ac
     override fun initialization() {
         binding {
             lifecycleOwner = this@WhatIfActivity
+            vm = mViewModel
         }
 
         // example0 : nullable Boolean true-false check.
@@ -91,9 +92,10 @@ class WhatIfActivity : BaseActivity<ActivityWhatifBinding, WhatIfVM>(R.layout.ac
             .setArrowPosition(0.5f)
             .setCornerRadius(4f)
             .setAlpha(0.9f)
-            .setBackgroundColor(ContextCompat.getColor(baseContext, R.color.color_f))
+            .setBackgroundColor(ContextCompat.getColor(baseContext, R.color.color_34bfb2))
             .setBalloonAnimation(BalloonAnimation.FADE)
             .setLifecycleOwner(this@WhatIfActivity)
+            .setDismissWhenTouchOutside(false)
             .build()
 
         binding.button.showAlignTop(balloon)

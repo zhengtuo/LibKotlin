@@ -1,4 +1,4 @@
-package com.common.utils
+package com.drelovey.common.utils
 
 import androidx.activity.ComponentActivity
 import androidx.annotation.MainThread
@@ -59,6 +59,7 @@ fun launch(
 ): Job {
     return GlobalScope.launch(CoroutineExceptionHandler { _, e -> onError(e) }) {
         try {
+            Dispatchers.Unconfined
             block.invoke(this)
         } finally {
             onComplete()

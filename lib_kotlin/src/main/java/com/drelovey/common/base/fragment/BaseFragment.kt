@@ -3,17 +3,14 @@ package com.drelovey.common.app.base.fragment
 import android.content.Context
 import android.os.Bundle
 import android.os.Message
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import com.drelovey.common.base.viewmodel.BaseViewModel
 import com.common.data.model.Resource
-import com.common.utils.observe
-import com.common.utils.viewModelsByVM
+import com.drelovey.common.utils.observe
+import com.drelovey.common.utils.viewModelsByVM
 import com.skydoves.bindables.BindingFragment
 
 

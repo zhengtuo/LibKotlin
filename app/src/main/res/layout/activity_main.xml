@@ -33,7 +33,14 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> CommonBinding.jumpCommand.call(RouterPath.PATH_COROUTINES)}"
             android:text="协程" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> CommonBinding.jumpCommand.call(RouterPath.PATH_WHATIF)}"
+            android:text="whatif" />
 
         <Button
             android:layout_width="wrap_content"

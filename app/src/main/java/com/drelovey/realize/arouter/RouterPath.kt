@@ -13,5 +13,7 @@ object RouterPath {
 
     //lib
     const val PATH_CONSTRAINT = "/app/lib/constraint"
+    const val PATH_WHATIF = "/app/lib/whatif"
+    const val PATH_COROUTINES = "/app/lib/coroutines"
 
 }

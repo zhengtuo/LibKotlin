@@ -67,6 +67,15 @@ dependencies {
     api "com.squareup.okhttp3:okhttp:$versions.okhttp3"
     api "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
 
+    // retrofit2
+    api "com.squareup.retrofit2:retrofit:$versions.retrofit2"
+    api "com.squareup.retrofit2:converter-gson:$versions.retrofit2"
+    api "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit2"
+
+    //kotlinx.coroutines
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
+
     //glide图片加载
     api "com.github.bumptech.glide:glide:$versions.glide"
     kapt "com.github.bumptech.glide:compiler:$versions.glide"
