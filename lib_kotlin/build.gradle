@@ -2,6 +2,8 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+
 }
 
 android {
@@ -10,6 +12,13 @@ android {
         minSdkVersion 21
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        //ARouter
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -56,6 +65,15 @@ dependencies {
         exclude group: "com.google.android.material"
     }
 
+    // ARouter组件化管理
+    api "com.alibaba:arouter-api:$versions.arouter"
+    kapt "com.alibaba:arouter-compiler:$versions.arouter"
+
+    // 依赖注入框架 hilt
+    api "com.google.dagger:hilt-android:$versions.hilt"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.hilt"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$versions.hilt"
+
     //immersionbar -- android 4.4以上沉浸式实现
     api "com.gyf.immersionbar:immersionbar:$versions.immersionbar"
     // fragment快速实现（可选）
@@ -71,6 +89,8 @@ dependencies {
     api "com.squareup.retrofit2:retrofit:$versions.retrofit2"
     api "com.squareup.retrofit2:converter-gson:$versions.retrofit2"
     api "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit2"
+    api "com.squareup.retrofit2:converter-moshi:$versions.retrofit2"
+    api "com.github.skydoves:sandwich:$versions.sandwich"
 
     //kotlinx.coroutines
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
@@ -82,6 +102,20 @@ dependencies {
 
     // whatIf  Fluent expressions of Kotlin for handling single if-else statements, nullable, collections, and boolean.
     api "com.github.skydoves:whatif:$versions.whatIfVersion"
+
+    //LiveEventBus是一款Android消息总线，基于LiveData，具有生命周期感知能力，支持Sticky，支持AndroidX，支持跨进程，支持跨APP
+    api 'com.jeremyliao:live-event-bus-x:1.7.3'
+
+    //room(数据库)
+    api "androidx.room:room-runtime:$versions.room"
+    kapt "androidx.room:room-compiler:$versions.room"
+
+    api "androidx.room:room-ktx:$versions.room"
+    api "androidx.room:room-rxjava2:$versions.room"
+
+    // moshi新一代json解析库
+    api "com.squareup.moshi:moshi-kotlin:$versions.moshiVersion"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshiVersion"
 
     //打印日志
     api "com.jakewharton.timber:timber:$versions.timber"

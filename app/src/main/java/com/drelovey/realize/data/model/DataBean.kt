@@ -1,8 +1,15 @@
 package com.drelovey.realize.data.model
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import androidx.room.Entity
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
-class DataBean {
+
+@Parcelize
+@JsonClass(generateAdapter = true)
+data class DataBean(
 
     /**
      * id : 10
@@ -21,22 +28,21 @@ class DataBean {
      * create_at : 2020-07-13 17:19:59
      * update_at : 2020-07-13 17:19:59
      */
-    val id = 0
-    val title: String? = null
-    val path: String? = null
-    val caption: String? = null
-    val type = 0
-    val ad_url: String? = null
-    val cat_list_child_id = 0
-    val cat_list_parent_id = 0
-    val s_cat_id = 0
-    val zb_id = 0
-    val campus_id = 0
-    val sort_order = 0
+    val id: Int = 0,
+    val title: String? = null,
+    val path: String? = null,
+    val caption: String? = null,
+    val type: Int = 0,
+    val ad_url: String? = null,
+    val cat_list_child_id: Int = 0,
+    val cat_list_parent_id: Int = 0,
+    val s_cat_id: Int = 0,
+    val zb_id: Int = 0,
+    val campus_id: Int = 0,
+    val sort_order: Int = 0,
 
-    @SerializedName("status")
-    val statusX = 0
-    val is_delete = 0
-    val create_at: String? = null
+    @field:Json(name = "status") val statusX: Int = 0,
+    val is_delete: Int = 0,
+    val create_at: String? = null,
     val update_at: String? = null
-}
+) : Parcelable

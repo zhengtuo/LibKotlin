@@ -1,7 +1,8 @@
 package com.drelovey.realize.data.remote.service
 
-import com.drelovey.realize.data.model.BaseEntity
-import com.drelovey.realize.data.model.HomeBanner
+import com.drelovey.realize.data.model.CloudClassroomEntity
+import com.drelovey.realize.data.model.DataBean
+import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.*
 
 /**
@@ -12,7 +13,7 @@ import retrofit2.http.*
  */
 interface ApiService {
 
-    @GET("api/Index/banners")
-    suspend fun getBannerList(@Query("banner_type") type: String): BaseEntity<HomeBanner>
+    @GET("api/Index/banners2")
+    suspend fun getBannerList(@Query("banner_type") type: String): ApiResponse<CloudClassroomEntity>
 
 }

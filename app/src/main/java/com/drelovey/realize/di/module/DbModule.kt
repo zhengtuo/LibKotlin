@@ -1,6 +1,8 @@
 package com.drelovey.realize.di.module
 
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
 
 /**
@@ -8,6 +10,7 @@ import dagger.Module
  * @CreateDate: 2020/4/29 16:53
  */
 @Module
+@InstallIn(SingletonComponent::class)
 class DbModule {
 
 //    @Provides

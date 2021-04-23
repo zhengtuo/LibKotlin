@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
@@ -55,25 +56,18 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // 依赖注入框架 hilt
+    //arouter
+    kapt "com.alibaba:arouter-compiler:$versions.arouter"
+    //room
+    kapt "androidx.room:room-compiler:$versions.room"
+    //hilt
     api "com.google.dagger:hilt-android:$versions.hilt"
     kapt "com.google.dagger:hilt-compiler:$versions.hilt"
     kapt "androidx.hilt:hilt-compiler:1.0.0-beta01"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.hilt"
-    kaptAndroidTest "com.google.dagger:hilt-compiler:$versions.hilt"
-
-    // ARouter组件化管理
-    api "com.alibaba:arouter-api:$versions.arouter"
-    kapt "com.alibaba:arouter-compiler:$versions.arouter"
-
-    //room(数据库)
-    api "androidx.room:room-runtime:$versions.room"
-    kapt "androidx.room:room-compiler:$versions.room"
-
-    api "androidx.room:room-ktx:$versions.room"
-    api "androidx.room:room-rxjava2:$versions.room"
 
     api "com.github.skydoves:balloon:$versions.balloon"
+
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshiVersion"
 
     implementation project(":lib_kotlin")
 }

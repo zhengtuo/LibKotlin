@@ -1,6 +1,5 @@
 package com.drelovey.realize.data.remote.interceptor
 
-import com.drelovey.data.constants.CommonConstants
 import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -31,32 +30,14 @@ class HeadInterceptor : Interceptor {
                 }
                 // 添加公共参数
                 formBody = bodyBuilder
-                    .addEncoded("osversion", CommonConstants.osVerCode.toString())
-                    .addEncoded("phonetype", CommonConstants.phoneType)
-                    .addEncoded("deviceid", CommonConstants.deviceId)
-                    .addEncoded("subscriberid", CommonConstants.subscriberId)
-                    .addEncoded("serialno", CommonConstants.serialNo)
-                    .addEncoded("android_id", CommonConstants.androidId)
-                    .addEncoded("mac", CommonConstants.mac)
-                    .addEncoded("cversion", CommonConstants.version.toString())
-                    .addEncoded("ctype", CommonConstants.cType)
-                    .addEncoded("channel", CommonConstants.channel)
-                    .addEncoded("cpuabi", CommonConstants.cpu_abi)
+
                     .build()
                 original = original.newBuilder().post(formBody).build()
             }
         } else if ("GET" == original.method) {
             val originalUrl = original.url
             val url = originalUrl.newBuilder()
-                .addQueryParameter("phonetype", CommonConstants.phoneType)
-                .addQueryParameter("deviceid", CommonConstants.deviceId)
-                .addQueryParameter("subscriberid", CommonConstants.subscriberId)
-                .addQueryParameter("serialno", CommonConstants.serialNo)
-                .addQueryParameter("android_id", CommonConstants.androidId)
-                .addQueryParameter("mac", CommonConstants.mac)
-                .addQueryParameter("cversion", CommonConstants.version.toString())
-                .addQueryParameter("ctype", CommonConstants.cType)
-                .addQueryParameter("channel", CommonConstants.channel)
+
                 .build()
             original = original.newBuilder().url(url).method(original.method, original.body).build()
         }

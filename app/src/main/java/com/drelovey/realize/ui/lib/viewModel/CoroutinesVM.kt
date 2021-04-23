@@ -11,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,6 +25,8 @@ class CoroutinesVM @Inject constructor(private val mModel: CoroutinesModel) : Ba
     fun getBannerList(type: String) {
         launch({
             dataLiveData.postValue(mModel.getHomeBaner(type))
+        }, {
+            Timber.d("CoroutinesVM %s", it.message)
         })
 
     }

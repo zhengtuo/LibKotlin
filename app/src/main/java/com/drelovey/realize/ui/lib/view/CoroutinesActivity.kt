@@ -2,6 +2,7 @@ package com.drelovey.realize.ui.lib.view
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.common.base.activity.BaseActivity
+import com.common.data.model.Resource
 import com.drelovey.realize.R
 import com.drelovey.realize.arouter.RouterPath
 import com.drelovey.realize.databinding.ActivityCoroutinesBinding
@@ -29,7 +30,7 @@ class CoroutinesActivity :
             lifecycleOwner = this@CoroutinesActivity
         }
 
-        basic()
+        //basic()
         //tutorial()
 
         mingTao()
@@ -310,6 +311,27 @@ class CoroutinesActivity :
 
     private fun mingTao() {
         mViewModel.getBannerList("10")
+    }
+
+    //请求回调
+    @ExperimentalCoroutinesApi
+    override fun handleData(resource: Resource<*>) {
+        when (resource) {
+            is Resource.Loading -> {
+
+            }
+            is Resource.Complete -> {
+
+            }
+            is Resource.Success -> {
+                val name = resource.methodName
+                val data = resource.data
+
+            }
+            is Resource.DataError -> {
+                Timber.d(resource.errorCode.toString())
+            }
+        }
     }
 
 }

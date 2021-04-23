@@ -12,6 +12,7 @@ class Error(val code: Int, val description: String) {
 
     companion object {
         const val NO_INTERNET_CONNECTION = -1
+        const val DEFAULT_NO_DATA = -2
         const val DEFAULT_ERROR = -3
         const val CAN_NOT_REGISTER = 2042
         const val NO_DATA = -4
