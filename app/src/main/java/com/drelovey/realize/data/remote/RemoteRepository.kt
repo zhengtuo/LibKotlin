@@ -3,7 +3,6 @@ package com.drelovey.realize.data.remote
 import com.common.data.model.Resource
 import com.drelovey.common.utils.LibUtils
 import com.drelovey.realize.data.DataGenerator
-import com.drelovey.realize.data.error.Error.Companion.DEFAULT_NO_DATA
 import com.drelovey.realize.data.error.Error.Companion.NO_INTERNET_CONNECTION
 import com.drelovey.realize.data.error.Error.Companion.UN_KNOW
 import com.drelovey.realize.data.model.CloudClassroomEntity
@@ -24,7 +23,7 @@ import javax.inject.Inject
 class RemoteRepository @Inject constructor(private val dataGenerator: DataGenerator) {
 
     suspend fun getBannerList(type: String): Resource<Any> {
-        return processCallByBase(
+        return processCallByApi(
             {
                 dataGenerator.getRetrofitService(ApiService::class.java).getBannerList(type)
             },
@@ -32,8 +31,8 @@ class RemoteRepository @Inject constructor(private val dataGenerator: DataGenera
         )
     }
 
-    private suspend fun processCallByBase(
-        responseCall: suspend () -> ApiResponse<CloudClassroomEntity>,
+    private suspend fun processCallByApi(
+        responseCall: suspend () -> ApiResponse<CloudClassroomEntity<*>>,
         methodName: String
     ): Resource<Any> {
         var result: Resource<Any> = Resource.DataError(errorCode = UN_KNOW)
@@ -42,11 +41,8 @@ class RemoteRepository @Inject constructor(private val dataGenerator: DataGenera
         }
         val response = responseCall.invoke()
         response.suspendOnSuccess {
-            result = Resource.DataError(errorCode = DEFAULT_NO_DATA)
             data.whatIfNotNull {
-                it.data.whatIfNotNull {
-                    result = Resource.Success(data = data!!.data as Any, methodName = methodName)
-                }
+                result = Resource.Success(data = it.data as Any, methodName = methodName)
             }
         }
         response.suspendOnError {

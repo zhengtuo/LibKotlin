@@ -1,5 +1,6 @@
 package com.drelovey.realize.ui.lib.view
 
+import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.common.base.activity.BaseActivity
 import com.common.data.model.Resource
@@ -7,6 +8,7 @@ import com.drelovey.realize.R
 import com.drelovey.realize.arouter.RouterPath
 import com.drelovey.realize.databinding.ActivityCoroutinesBinding
 import com.drelovey.realize.ui.lib.viewModel.CoroutinesVM
+import com.skydoves.whatif.whatIfNotNull
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import timber.log.Timber
@@ -329,7 +331,12 @@ class CoroutinesActivity :
 
             }
             is Resource.DataError -> {
-                Timber.d(resource.errorCode.toString())
+                resource.errorCode.whatIfNotNull {
+                    val error = mViewModel.errorManager.getError(resource.errorCode!!)
+                    Toast.makeText(mContext,Toast.LENGTH_SHORT)
+
+                }
+
             }
         }
     }

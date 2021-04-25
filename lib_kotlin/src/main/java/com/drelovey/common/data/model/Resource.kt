@@ -11,7 +11,7 @@ sealed class Resource<T>(
         val methodName: String? = null,
         val errorCode: Int? = null
 ) {
-    class Success<T>(data: T, methodName: String?) : Resource<T>(data, methodName)
+    class Success<T>(data: T?, methodName: String?) : Resource<T>(data, methodName)
     class Loading<T>(data: T? = null) : Resource<T>(data)
     class Complete<T>(data: T? = null) : Resource<T>(data)
     class DataError<T>(errorCode: Int) : Resource<T>(null, null, errorCode)

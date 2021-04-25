@@ -9,10 +9,10 @@ import com.squareup.moshi.JsonClass
  * @CreateDate: 2020/1/22 16:31
  */
 @JsonClass(generateAdapter = true)
-data class CloudClassroomEntity (
+data class CloudClassroomEntity<T> (
 
     val code: Int = 0,
-    var data: List<DataBean>? = null,
+    var data: T? = null,
     val status: Boolean = false
 
 )

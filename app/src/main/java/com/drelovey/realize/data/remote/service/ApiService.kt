@@ -14,6 +14,9 @@ import retrofit2.http.*
 interface ApiService {
 
     @GET("api/Index/banners2")
-    suspend fun getBannerList(@Query("banner_type") type: String): ApiResponse<CloudClassroomEntity>
+    suspend fun getBannerList(@Query("banner_type") type: String): ApiResponse<CloudClassroomEntity<List<DataBean>>>
+
+    @GET("api/Index/banners2")
+    suspend fun getBannerList2(@Query("banner_type") type: String): CloudClassroomEntity<DataBean>
 
 }
