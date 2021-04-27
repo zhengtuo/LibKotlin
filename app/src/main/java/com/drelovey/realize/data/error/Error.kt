@@ -14,5 +14,7 @@ class Error(val code: Int, val description: String) {
     companion object {
         const val NO_INTERNET_CONNECTION = 1
         const val UN_KNOW = -1
+        const val EMPTY = 404
+        const val PARAMETER_ERROR = 500
     }
 }

@@ -4,8 +4,10 @@ import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.common.base.activity.BaseActivity
 import com.common.data.model.Resource
+import com.drelovey.common.utils.LibUtils
 import com.drelovey.realize.R
 import com.drelovey.realize.arouter.RouterPath
+import com.drelovey.realize.data.error.Error
 import com.drelovey.realize.databinding.ActivityCoroutinesBinding
 import com.drelovey.realize.ui.lib.viewModel.CoroutinesVM
 import com.skydoves.whatif.whatIfNotNull
@@ -333,7 +335,12 @@ class CoroutinesActivity :
             is Resource.DataError -> {
                 resource.errorCode.whatIfNotNull {
                     val error = mViewModel.errorManager.getError(resource.errorCode!!)
-                    Toast.makeText(mContext,Toast.LENGTH_SHORT)
+                    if (error.description == LibUtils.getStringById(R.string.error_un_know)) {
+                        Toast.makeText(mContext, resource.errorCase ?: "未知错误", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        Toast.makeText(mContext, error.description, Toast.LENGTH_SHORT).show()
+                    }
 
                 }
 

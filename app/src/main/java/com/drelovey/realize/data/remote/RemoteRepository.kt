@@ -7,12 +7,11 @@ import com.drelovey.realize.data.error.Error.Companion.NO_INTERNET_CONNECTION
 import com.drelovey.realize.data.error.Error.Companion.UN_KNOW
 import com.drelovey.realize.data.model.CloudClassroomEntity
 import com.drelovey.realize.data.remote.service.ApiService
-import com.skydoves.sandwich.ApiResponse
-import com.skydoves.sandwich.suspendOnError
-import com.skydoves.sandwich.suspendOnSuccess
+import com.skydoves.sandwich.*
 import com.skydoves.whatif.whatIf
 import com.skydoves.whatif.whatIfNotNull
 import timber.log.Timber
+import java.lang.Exception
 import javax.inject.Inject
 
 /**
@@ -35,18 +34,23 @@ class RemoteRepository @Inject constructor(private val dataGenerator: DataGenera
         responseCall: suspend () -> ApiResponse<CloudClassroomEntity<*>>,
         methodName: String
     ): Resource<Any> {
-        var result: Resource<Any> = Resource.DataError(errorCode = UN_KNOW)
+        var result: Resource<Any> = Resource.DataError(errorCode = UN_KNOW, null)
         if (!LibUtils.checkNet()) {
-            return Resource.DataError(errorCode = NO_INTERNET_CONNECTION)
+            return Resource.DataError(errorCode = NO_INTERNET_CONNECTION, null)
         }
-        val response = responseCall.invoke()
-        response.suspendOnSuccess {
-            data.whatIfNotNull {
-                result = Resource.Success(data = it.data as Any, methodName = methodName)
+        try {
+            val response = responseCall.invoke()
+
+            response.suspendOnSuccess {
+                data.whatIfNotNull {
+                    result = Resource.Success(data = it.data as Any, methodName = methodName)
+                }
             }
-        }
-        response.suspendOnError {
-            result = Resource.DataError(errorCode = raw.code)
+            response.suspendOnError {
+                result = Resource.DataError(errorCode = raw.code, errorCase = raw.message)
+            }
+        } catch (e: Exception) {
+            result = Resource.DataError(errorCode = UN_KNOW, errorCase = e.message)
         }
         return result
     }

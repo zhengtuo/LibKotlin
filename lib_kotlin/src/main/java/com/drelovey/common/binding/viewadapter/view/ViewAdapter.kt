@@ -4,7 +4,20 @@ import android.annotation.SuppressLint
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
+import androidx.databinding.BindingConversion
+import com.drelovey.common.base.viewmodel.BaseViewModel
+import com.drelovey.common.binding.listener.BindingClickT
 import com.drelovey.common.binding.listener.BindingCommand
+import com.drelovey.common.binding.listener.CommonBinding
+import com.drelovey.common.generated.callback.OnClickListener
+import com.drelovey.common.utils.launch
+import com.skydoves.whatif.whatIfMap
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.actor
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+
 
 /**
  * @Author: Drelovey
@@ -13,20 +26,32 @@ import com.drelovey.common.binding.listener.BindingCommand
 object ViewAdapter {
 
     //防重复点击间隔(秒)
-    const val CLICK_INTERVAL = 1
+    const val CLICK_INTERVAL = 5000L
 
     @SuppressLint("CheckResult")
     @JvmStatic
-    @BindingAdapter(value = ["onClickCommand", "isThrottle", "interval"], requireAll = false)
+    @BindingAdapter(
+        value = ["onClickCommand", "viewModel", "isDelayed", "interval"],
+        requireAll = false
+    )
     fun onClickCommand(
         view: View,
         clickCommand: BindingCommand<*>?,
-        isThrottle: Boolean,
+        viewModel: BaseViewModel?,
+        isDelayed: Boolean,
         interval: Long
     ) {
-        view.setOnClickListener {
-            clickCommand?.execute()
-        }
+        viewModel?.launch({
+            var job = launch({
+                clickCommand?.click()
+                delay(5000L)
+            })
+            view.setOnClickListener {
+
+
+            }
+
+        })
     }
 
     /**
@@ -67,19 +92,22 @@ object ViewAdapter {
 
     @Suppress("ObjectLiteralToLambda")
     @JvmStatic
-    @BindingAdapter(value = ["xmlClick"])
-    fun xmlClick(view: View?, method: String) {
-//        view?.setOnClickListener(object : View.OnClickListener {
-//            @Except
-//            override fun onClick(v: View?) {
-//                try {
-//                    //利用反射通过方法名获取method,再使用invoke进行方法的调用
-//                    ReflectionUtils.resolveMethod(view.context, method)?.invoke(view.context, view)
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            }
-//
-//        })
+    @BindingAdapter(value = ["method", "viewModel"], requireAll = true)
+    fun xmlClick(view: View?, method: (view: View) -> Unit = {}, viewModel: BaseViewModel) {
+        view?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                try {
+                    //利用反射通过方法名获取method,再使用invoke进行方法的调用
+
+                    viewModel.launch(
+                        {
+                            method.invoke(view)
+                        }
+                    )
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        })
     }
 }

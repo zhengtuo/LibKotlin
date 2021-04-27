@@ -8,7 +8,7 @@
 
         <import type="android.view.View" />
 
-        <import type="com.drelovey.common.binding.listener.CommonToolbarBinding" />
+        <import type="com.drelovey.common.binding.listener.CommonBinding" />
 
         <variable
             name="utils"
@@ -60,7 +60,7 @@
 
         <variable
             name="leftCommand"
-            type="com.drelovey.common.binding.listener.BindingGenericity" />
+            type="com.drelovey.common.binding.listener.BindingClickT" />
 
     </data>
 
@@ -77,7 +77,7 @@
             android:layout_height="?attr/actionBarSize"
             android:gravity="center_horizontal"
             app:icon="@{hideIcon ? null : Icon != null ? Icon : R.mipmap.ic_back_arrow}"
-            app:onNavigationClick="@{(view) -> leftCommand != null ? leftCommand.call(view) : CommonToolbarBinding.backCommand.call(view)}">
+            app:onNavigationClick="@{(view) -> leftCommand != null ? leftCommand.click(view) : CommonBinding.backCommand.click(view)}">
 
             <TextView
                 android:id="@+id/txt_toolbar_title"
