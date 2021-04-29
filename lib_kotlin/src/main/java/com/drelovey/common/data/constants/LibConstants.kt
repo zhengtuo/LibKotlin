@@ -5,6 +5,8 @@ package com.drelovey.common.data.constants
  */
 
 class LibConstants {
+    //object修饰的类是Singleton（单例）
+    //在类的内部object 前加上 companion， 可以做成属于这个类的Singleton。
     companion object {
         const val MIN_API = 19
     }

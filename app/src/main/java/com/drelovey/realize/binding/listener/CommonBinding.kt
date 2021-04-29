@@ -16,8 +16,8 @@ object CommonBinding {
     @JvmField
     var jumpClick: BindingClickT<String> = object : BindingClickT<String> {
         override fun click(t: String) {
-            //getInstance().build(t).navigation()
-            Timber.d(t)
+            getInstance().build(t).navigation()
+            //Timber.d(t)
         }
     }
 
