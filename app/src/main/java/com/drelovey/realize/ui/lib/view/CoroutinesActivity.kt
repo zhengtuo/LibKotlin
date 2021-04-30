@@ -5,9 +5,10 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.common.base.activity.BaseActivity
 import com.common.data.model.Resource
 import com.drelovey.common.utils.LibUtils
+import com.drelovey.common.utils.launch
 import com.drelovey.realize.R
 import com.drelovey.realize.arouter.RouterPath
-import com.drelovey.realize.data.error.Error
+import com.drelovey.realize.binding.listener.Callback
 import com.drelovey.realize.data.model.User
 import com.drelovey.realize.data.remote.service.GitHubService
 import com.drelovey.realize.databinding.ActivityCoroutinesBinding
@@ -17,18 +18,19 @@ import com.skydoves.whatif.whatIfNotNull
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.GlobalScope.coroutineContext
-import retrofit2.Call
-import retrofit2.Response
-import retrofit2.await
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.Executors
-import javax.security.auth.callback.Callback
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
-import kotlin.math.log
+
+//typealias 可用于提供一个更语义精简的类型别名取代具体泛型类型、匿名函数等含糊定义。
+typealias Callback2 = (User) -> Unit
 
 //kotlinx.coroutines 协程使用范例  协程是一种非抢占式或者说协作式的计算机程序并发调度的实现
 @Route(path = RouterPath.PATH_COROUTINES)
@@ -173,6 +175,41 @@ class CoroutinesActivity :
             scheduler()
         }
 
+        GlobalScope.launch {
+            val user = getUserCoroutine()
+            Timber.d(user.toString())
+        }
+    }
+
+    fun crackKotlin4() {
+        GlobalScope.launch {
+            exception()
+        }
+
+    }
+
+    //Flow
+    fun crackKotlin11() {
+        val ints = sequence {
+            (1..3).forEach {
+                yield(it)
+            }
+        }
+
+        val intFlow = flow {
+            (1..3).forEach {
+                emit(it)
+                delay(100)
+            }
+        }
+
+        //Flow 也可以设定它运行时所使用的调度器：
+        intFlow.flowOn(Dispatchers.IO)
+
+        mViewModel.launch({
+            intFlow.flowOn(Dispatchers.IO)
+        })
+
     }
 
     /**
@@ -284,17 +321,50 @@ class CoroutinesActivity :
         log(2)
     }
 
-    suspend fun getUserCoroutine() = suspendCoroutine<User> {
-//        continuation ->
-//        getUser {
-//            continuation.resume(it)
-//        }
+    suspend fun getUserCoroutine() = suspendCoroutine<User> { continuation ->
+        getUser2 {
+            continuation.resume(it)
+        }
+    }
+
+    suspend fun getUserCoroutine2() = suspendCoroutine<User> { continuation ->
+        getUser(object : Callback<User> {
+            override fun onSuccess(value: User) {
+                continuation.resume(value)
+            }
+
+            override fun onError(t: Throwable) {
+                continuation.resumeWithException(t)
+            }
+
+        })
     }
 
     //typealias Callback = (User) -> Unit
 
-    fun getUser(callback: Callback){
+    fun getUser2(callback: Callback2) {
+        val user = User("1", "2", "3")
+        callback.invoke(user)
+    }
 
+    fun getUser(callback: Callback<User>) {
+        try {
+            val user = User("1", "2", "3")
+            callback.onSuccess(user)
+        } catch (e: Exception) {
+            callback.onError(e)
+        }
+    }
+
+    suspend fun exception() {
+        val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+            log("Throws an exception with message: ${throwable.message}")
+        }
+        log(1)
+        GlobalScope.launch(exceptionHandler) {
+            throw ArithmeticException("Hey!")
+        }.join()
+        log(2)
     }
 
 

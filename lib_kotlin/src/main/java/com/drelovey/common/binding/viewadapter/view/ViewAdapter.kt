@@ -12,11 +12,13 @@ import com.drelovey.common.binding.listener.CommonBinding
 import com.drelovey.common.generated.callback.OnClickListener
 import com.drelovey.common.utils.launch
 import com.skydoves.whatif.whatIfMap
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.actor
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.flow
+import timber.log.Timber
+import java.sql.Time
 
 
 /**
@@ -26,7 +28,7 @@ import kotlinx.coroutines.isActive
 object ViewAdapter {
 
     //防重复点击间隔(秒)
-    const val CLICK_INTERVAL = 5000L
+    const val CLICK_INTERVAL = 1500L
 
     @SuppressLint("CheckResult")
     @JvmStatic
@@ -34,23 +36,28 @@ object ViewAdapter {
         value = ["onClickCommand", "viewModel", "isDelayed", "interval"],
         requireAll = false
     )
+    //防止重复点击
     fun onClickCommand(
         view: View,
         clickCommand: BindingCommand<*>?,
-        viewModel: BaseViewModel?,
-        isDelayed: Boolean,
-        interval: Long
+        viewModel: BaseViewModel?, //作用域 反正内存泄露
+        isDelayed: Boolean, //是否启动
+        interval: Long //延时时间
     ) {
         viewModel?.launch({
-            var job = launch({
-                clickCommand?.click()
-                delay(5000L)
-            })
+            var canClick = isDelayed
             view.setOnClickListener {
-
-
+                if (canClick) {
+                    clickCommand?.click()
+                    canClick = false
+                    launch {
+                        delay(if (interval > 0L) interval else CLICK_INTERVAL)
+                        canClick = true
+                    }.start()
+                } else if (!isDelayed) {
+                    clickCommand?.click()
+                }
             }
-
         })
     }
 

@@ -7,5 +7,5 @@ package com.drelovey.realize.data.model
  * 4.data class只能实现接口（Kotlin1.1以前的规则）,现在也可以继承其它类
  */
 data class User(
-    val id: String, val name: String, val url: String
+    var id: String, var name: String, var url: String
 )
