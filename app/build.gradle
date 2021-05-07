@@ -44,6 +44,19 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    //自定义输出apk名字
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                if (variant.getBuildType().getName() == 'release') {
+                    outputFileName = new File("app_v" + variant.versionName + "_" +
+                            new Date().format("yyyy-MM-dd_HH", TimeZone.getTimeZone("UTC")) + "_" +
+                            variant.getBuildType().getName() + ".apk")
+                }
+            }
+    }
+
 }
 
 repositories {
