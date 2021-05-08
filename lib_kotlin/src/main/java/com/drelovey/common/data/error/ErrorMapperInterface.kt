@@ -1,4 +1,4 @@
-package com.task.data.error.mapper
+package com.drelovey.common.data.error
 
 interface ErrorMapperInterface {
     fun getErrorString(errorId: Int): String

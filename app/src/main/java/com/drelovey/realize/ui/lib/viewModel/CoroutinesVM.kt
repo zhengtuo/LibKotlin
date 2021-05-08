@@ -3,7 +3,8 @@ package com.drelovey.realize.ui.lib.viewModel
 import androidx.databinding.Bindable
 
 import com.drelovey.common.utils.launch
-import com.drelovey.realize.app.base.BaseViewModel
+import com.drelovey.common.base.model.BaseViewModel
+import com.drelovey.common.data.error.ErrorMapper
 import com.drelovey.realize.ui.lib.model.CoroutinesModel
 import com.skydoves.bindables.bindingProperty
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,5 +26,7 @@ class CoroutinesVM @Inject constructor(private val mModel: CoroutinesModel) : Ba
             Timber.d("CoroutinesVM %s", it.message)
         })
     }
+
+    override var errorMapper = ErrorMapper()
 
 }

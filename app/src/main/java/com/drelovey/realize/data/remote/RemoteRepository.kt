@@ -1,17 +1,14 @@
 package com.drelovey.realize.data.remote
 
 import com.common.data.model.Resource
+import com.drelovey.common.data.error.Error.Companion.NO_INTERNET_CONNECTION
+import com.drelovey.common.data.error.Error.Companion.UN_KNOW
 import com.drelovey.common.utils.LibUtils
 import com.drelovey.realize.data.DataGenerator
-import com.drelovey.realize.data.error.Error.Companion.NO_INTERNET_CONNECTION
-import com.drelovey.realize.data.error.Error.Companion.UN_KNOW
 import com.drelovey.realize.data.model.CloudClassroomEntity
 import com.drelovey.realize.data.remote.service.ApiService
 import com.skydoves.sandwich.*
-import com.skydoves.whatif.whatIf
 import com.skydoves.whatif.whatIfNotNull
-import timber.log.Timber
-import java.lang.Exception
 import javax.inject.Inject
 
 /**

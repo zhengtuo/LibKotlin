@@ -1,8 +1,8 @@
-package com.drelovey.realize.manager.errors
+package com.drelovey.common.manager.errors
 
-import com.drelovey.realize.data.error.mapper.ErrorMapper
+import com.drelovey.common.data.error.Error
+import com.drelovey.common.data.error.ErrorMapper
 import javax.inject.Inject
-import com.drelovey.realize.data.error.Error
 
 /**
  * Created by Drelovey on 4/25/2021
