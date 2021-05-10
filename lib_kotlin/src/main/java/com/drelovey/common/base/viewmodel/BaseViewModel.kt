@@ -5,7 +5,9 @@ package com.drelovey.common.base.viewmodel
 import android.os.Message
 import androidx.lifecycle.MutableLiveData
 import com.common.data.model.Resource
+import com.drelovey.common.data.error.ErrorMapper
 import com.drelovey.common.livedata.SingleLiveEvent
+import com.drelovey.common.manager.errors.ErrorManager
 import com.skydoves.bindables.BindingViewModel
 
 
@@ -14,6 +16,13 @@ open class BaseViewModel : BindingViewModel() {
     private var finishEvent: SingleLiveEvent<Void>? = null
 
     val dataLiveData: MutableLiveData<Resource<Any>> = MutableLiveData()
+
+    open var errorMapper = ErrorMapper()
+
+    val errorManager: ErrorManager
+        get() = ErrorManager(
+            errorMapper
+        )
 
     open fun initData() {}
 
