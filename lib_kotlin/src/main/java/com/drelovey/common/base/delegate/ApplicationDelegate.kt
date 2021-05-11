@@ -15,7 +15,7 @@ import timber.log.Timber.DebugTree
  * @Author: Drelovey
  * @CreateDate: 2020/4/28 12:04
  */
-class ApplicationDelegate(application: Application) : ApplicationLifecycle {
+open class ApplicationDelegate(application: Application) : ApplicationLifecycle {
 
     var mApplication: Application = application
 
