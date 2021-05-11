@@ -13,7 +13,7 @@ interface ApplicationLifecycle {
      *
      * @param base
      */
-    fun attachBaseContext(base: Context)
+    fun attachBaseContext(base: Context, isDebug: Boolean)
 
     /**
      * 在Application.onCreate 中执行

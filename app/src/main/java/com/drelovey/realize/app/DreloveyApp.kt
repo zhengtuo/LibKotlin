@@ -21,7 +21,7 @@ open class DreloveyApp : Application() {
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         mApplicationDelegate = ApplicationDelegate(this)
-        mApplicationDelegate.attachBaseContext(base)
+        mApplicationDelegate.attachBaseContext(base, BuildConfig.DEBUG)
     }
 
     override fun onCreate() {

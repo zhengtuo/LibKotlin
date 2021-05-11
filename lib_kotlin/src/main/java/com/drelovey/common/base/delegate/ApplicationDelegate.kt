@@ -19,10 +19,12 @@ open class ApplicationDelegate(application: Application) : ApplicationLifecycle 
 
     var mApplication: Application = application
 
+    var isDebug: Boolean = false
 
-    override fun attachBaseContext(base: Context) {
+    override fun attachBaseContext(base: Context, isDebug: Boolean) {
         //Debug模式下开启日志
-        if (BuildConfig.DEBUG) {                             // 这两行必须写在init之前，否则这些配置在init过程中将无效
+        if (isDebug) {                             // 这两行必须写在init之前，否则这些配置在init过程中将无效
+            this.isDebug = isDebug
             Timber.plant(DebugTree())
         }
     }
@@ -32,7 +34,7 @@ open class ApplicationDelegate(application: Application) : ApplicationLifecycle 
         LibUtils.init(mApplication)
         // 在主进程中初始化相关数据
         if (LibUtils.isMainProcess(mApplication)) {
-            if (BuildConfig.DEBUG) {                         // 这两行必须写在init之前，否则这些配置在init过程中将无效
+            if (isDebug) {                         // 这两行必须写在init之前，否则这些配置在init过程中将无效
                 // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
             }
             initLiveEventBus()
@@ -52,11 +54,11 @@ open class ApplicationDelegate(application: Application) : ApplicationLifecycle 
 
     }
 
-    fun initLiveEventBus() {
+    private fun initLiveEventBus() {
         LiveEventBus.config()
             .setContext(mApplication)
             .lifecycleObserverAlwaysActive(true)
-            .whatIf(BuildConfig.DEBUG, { enableLogger(true) }, { enableLogger(false) })
+            .whatIf(isDebug, { enableLogger(true) }, { enableLogger(false) })
 
     }
 
