@@ -1,6 +1,7 @@
 package com.drelovey.realize.ui.lib.viewModel
 
 import androidx.databinding.Bindable
+import com.drelovey.common.base.viewmodel.BaseViewModel
 
 import com.drelovey.common.utils.launch
 import com.drelovey.common.data.error.ErrorMapper
@@ -11,7 +12,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class CoroutinesVM @Inject constructor(private val mModel: CoroutinesModel) : BaseModel() {
+class CoroutinesVM @Inject constructor(private val mModel: CoroutinesModel) : BaseViewModel() {
 
     @get:Bindable
     var title: String by bindingProperty("Coroutines")

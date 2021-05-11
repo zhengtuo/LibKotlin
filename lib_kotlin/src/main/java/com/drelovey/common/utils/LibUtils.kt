@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 import androidx.annotation.StringRes
 import com.drelovey.common.data.constants.LibConstants
+import com.drelovey.common.data.model.NetConfig
 import timber.log.Timber
 
 /**
@@ -25,9 +26,18 @@ object LibUtils {
 
     var context: Context? = null
 
+    var netConfig: NetConfig? = null
+
     //赋值Lib context
+    @JvmStatic
     fun init(context: Context) {
         LibUtils.context = context.applicationContext
+    }
+
+    //网络信息的配置
+    @JvmStatic
+    fun setNetConstants(config: NetConfig) {
+        netConfig = config
     }
 
 

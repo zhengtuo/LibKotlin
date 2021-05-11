@@ -10,7 +10,6 @@ import com.drelovey.realize.R
 import com.drelovey.realize.arouter.RouterPath
 import com.drelovey.realize.binding.listener.Callback
 import com.drelovey.realize.data.model.User
-import com.drelovey.realize.data.remote.service.GitHubService
 import com.drelovey.realize.databinding.ActivityCoroutinesBinding
 import com.drelovey.realize.lib.coroutines.MyContinuationInterceptor
 import com.drelovey.realize.ui.lib.viewModel.CoroutinesVM
@@ -20,7 +19,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.GlobalScope.coroutineContext
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
@@ -59,20 +57,20 @@ class CoroutinesActivity :
      */
 
 
-    val gitHubServiceApi by lazy {
-        val retrofit = retrofit2.Retrofit.Builder()
-            .baseUrl("https://api.github.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        retrofit.create(GitHubService::class.java)
-    }
+//    val gitHubServiceApi by lazy {
+//        val retrofit = retrofit2.Retrofit.Builder()
+//            .baseUrl("https://api.github.com")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//
+//        retrofit.create(GitHubService::class.java)
+//    }
 
     override fun initialization() {
         binding {
             lifecycleOwner = this@CoroutinesActivity
         }
-        //mingTao()
+        mingTao()
         //crackKotlin1()
 
         crackKotlin3()
@@ -100,17 +98,17 @@ class CoroutinesActivity :
 //        })
 
         //CallAdapter 的方式
-        GlobalScope.launch(Dispatchers.Main) {
-            try {
-                mViewModel.dataLiveData.postValue(
-                    Resource.Success(
-                        data = gitHubServiceApi.getUser("bennyhuo").await(), methodName = "un know"
-                    )
-                )
-            } catch (e: Exception) {
-                //showError(e)
-            }
-        }
+//        GlobalScope.launch(Dispatchers.Main) {
+//            try {
+//                mViewModel.dataLiveData.postValue(
+//                    Resource.Success(
+//                        data = gitHubServiceApi.getUser("bennyhuo").await(), methodName = "un know"
+//                    )
+//                )
+//            } catch (e: Exception) {
+//                //showError(e)
+//            }
+//        }
         //注意以下不是正确的代码，仅供大家理解协程使用
 //        GlobalScope.launch { Dispatchers.Main } {
 //            gitHubServiceApi.getUser("bennyhuo").await(Continuation<User> {

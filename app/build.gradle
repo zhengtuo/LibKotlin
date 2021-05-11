@@ -82,5 +82,5 @@ dependencies {
 
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshiVersion"
 
-    implementation project(":lib_kotlin")
+    api project(":lib_kotlin")
 }

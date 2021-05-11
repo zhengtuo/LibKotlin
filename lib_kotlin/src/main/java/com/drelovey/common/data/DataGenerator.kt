@@ -1,13 +1,15 @@
-package com.drelovey.realize.data
+package com.drelovey.common.data
 
-import android.app.Application
 import android.text.TextUtils
 import androidx.collection.LruCache
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.drelovey.common.data.constants.LibConstants
 import com.drelovey.common.utils.LibUtils
-import com.drelovey.realize.data.constants.CommonConstants
 import dagger.Lazy
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -18,11 +20,9 @@ import javax.inject.Singleton
  * @Author: Drelovey
  * @CreateDate: 2020/1/20 18:29
  */
-@Singleton
+@Module
+@InstallIn(SingletonComponent::class)
 class DataGenerator @Inject constructor() {
-
-    @Inject
-    lateinit var mApplication: Application
 
     @Inject
     @Singleton
@@ -43,7 +43,7 @@ class DataGenerator @Inject constructor() {
     fun <T> getRetrofitService(service: Class<T>): T {
 
         if (!this::mBaseServiceCache.isInitialized) {
-            mBaseServiceCache = LruCache(CommonConstants.DEFAULT_RETROFIT_SERVICE_MAX_SIZE)
+            mBaseServiceCache = LruCache(LibConstants.DEFAULT_RETROFIT_SERVICE_MAX_SIZE)
         }
         var retrofitService: T = service.canonicalName?.let { mBaseServiceCache.get(it) } as T
 
@@ -73,7 +73,7 @@ class DataGenerator @Inject constructor() {
     @Suppress("UNCHECKED_CAST")
     fun <T : RoomDatabase?> getRoomDatabase(database: Class<T>, dbName: String): T {
         if (!this::mRoomDatabaseCache.isInitialized) {
-            mRoomDatabaseCache = LruCache(CommonConstants.DEFAULT_ROOM_DATABASE_MAX_SIZE)
+            mRoomDatabaseCache = LruCache(LibConstants.DEFAULT_ROOM_DATABASE_MAX_SIZE)
         }
         var roomDatabase: T = database.canonicalName?.let { mRoomDatabaseCache.get(it) } as T
 
@@ -83,7 +83,7 @@ class DataGenerator @Inject constructor() {
                     val builder = Room.databaseBuilder(
                         LibUtils.getLibContext(),
                         database,
-                        if (TextUtils.isEmpty(dbName)) CommonConstants.DEFAULT_DATABASE_NAME else dbName
+                        if (TextUtils.isEmpty(dbName)) LibConstants.DEFAULT_DATABASE_NAME else dbName
                     )
                     roomDatabase = builder
                         .fallbackToDestructiveMigration()

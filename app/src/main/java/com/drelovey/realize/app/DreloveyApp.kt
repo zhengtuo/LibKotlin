@@ -1,10 +1,11 @@
-package com.drelovey.app
+package com.drelovey.realize.app
 
 import android.app.Application
 import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
 import com.drelovey.common.BuildConfig
 import com.drelovey.common.base.delegate.ApplicationDelegate
+import com.drelovey.common.data.model.NetConfig
 import com.drelovey.common.utils.LibUtils
 import dagger.hilt.android.HiltAndroidApp
 
@@ -34,6 +35,7 @@ open class DreloveyApp : Application() {
      */
     private fun initApp() {
         LibUtils.context = this
+        LibUtils.setNetConstants(NetConfig().setBaseUrl("http://php.mingtaoedu.com/mt/public/index.php/"))
 
         initARouter()
     }

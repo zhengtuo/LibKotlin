@@ -8,13 +8,18 @@ import com.drelovey.realize.arouter.RouterPath
 import com.drelovey.realize.R
 import com.drelovey.realize.databinding.ActivityConstraintlayoutBinding
 import com.drelovey.realize.ui.lib.viewModel.ConstraintLayoutVM
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
 
 //ConstraintLayout使用详解
 @Route(path = RouterPath.PATH_CONSTRAINT)
 @AndroidEntryPoint
 class ConstraintLayoutActivity :
     BaseActivity<ActivityConstraintlayoutBinding, ConstraintLayoutVM>(R.layout.activity_constraintlayout) {
+
     override fun initialization() {
         binding {
             lifecycleOwner = this@ConstraintLayoutActivity

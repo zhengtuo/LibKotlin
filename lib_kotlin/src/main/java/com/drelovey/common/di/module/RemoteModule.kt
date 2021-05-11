@@ -1,22 +1,20 @@
-package com.drelovey.realize.di.module
+@file:Suppress("unused")
+
+package com.drelovey.common.di.module
 
 import android.app.Application
-import com.drelovey.realize.data.constants.CommonConstants
-import com.drelovey.realize.data.remote.interceptor.HeadInterceptor
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.drelovey.common.data.model.NetConfig
+import com.drelovey.common.utils.LibUtils
 import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
+import com.skydoves.whatif.whatIf
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.reactivex.schedulers.Schedulers
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
 import java.io.File
@@ -27,24 +25,28 @@ import javax.inject.Singleton
  * @Author: Drelovey
  * @CreateDate: 2020/4/29 16:53
  */
+@Suppress("JoinDeclarationAndAssignment", "UNUSED_PARAMETER", "ObjectLiteralToLambda")
 @Module
 @InstallIn(SingletonComponent::class)
 class RemoteModule {
 
-    @Provides
-    @Singleton
-    fun provideGson(): Gson {
-        return GsonBuilder().create()
+    lateinit var netConfig: NetConfig
+
+    fun initConfig() {
+        netConfig = LibUtils.netConfig ?: NetConfig()
     }
+
 
     @Provides
     @Singleton
     fun provideBaseRetrofit(
         builder: Retrofit.Builder,
         client: OkHttpClient,
-        gson: Gson
     ): Retrofit {
-        return createRetrofit(builder, client, CommonConstants.BASE_URL, gson)
+        if (netConfig.BASE_URL == null) {
+            throw NullPointerException("place set base url")
+        }
+        return createRetrofit(builder, client, netConfig.BASE_URL!!)
     }
 
     @Provides
@@ -71,15 +73,10 @@ class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideHeadInterceptor(): HeadInterceptor {
-        return HeadInterceptor()
-    }
-
-    @Provides
-    @Singleton
     fun provideCache(application: Application): Cache {
-        val cacheFile = File(application.cacheDir, CommonConstants.PATH_CACHE)
-        return Cache(cacheFile, CommonConstants.CACHE_SIZE)
+        initConfig()
+        val cacheFile = File(application.cacheDir, netConfig.PATH_CACHE)
+        return Cache(cacheFile, netConfig.CACHE_SIZE)
     }
 
     @Provides
@@ -87,15 +84,17 @@ class RemoteModule {
     fun provideOkHttpClient(
         builder: OkHttpClient.Builder,
         loggingInterceptor: HttpLoggingInterceptor,
-        headInterceptor: HeadInterceptor,
         cache: Cache
     ): OkHttpClient {
         return builder
-            .connectTimeout(CommonConstants.DEFAULT_TIME_OUT, TimeUnit.SECONDS)
-            .readTimeout(CommonConstants.DEFAULT_TIME_OUT, TimeUnit.SECONDS)
-            .writeTimeout(CommonConstants.DEFAULT_TIME_OUT, TimeUnit.SECONDS)
+            //连接超时时间（默认10秒）
+            .connectTimeout(netConfig.DEFAULT_TIME_OUT, TimeUnit.SECONDS)
+            //读取超时时间
+            .readTimeout(netConfig.DEFAULT_TIME_OUT, TimeUnit.SECONDS)
+            //写超时时间
+            .writeTimeout(netConfig.DEFAULT_TIME_OUT, TimeUnit.SECONDS)
             //.retryOnConnectionFailure(true)
-            .addInterceptor(headInterceptor)
+            .whatIf(netConfig.interceptor != null) { addInterceptor(netConfig.interceptor!!) }
             .addInterceptor(loggingInterceptor)
             //.cache(cache)
             .build()
@@ -105,17 +104,13 @@ class RemoteModule {
         builder: Retrofit.Builder,
         okhttpClient: OkHttpClient,
         url: String,
-        gson: Gson
     ): Retrofit {
         return builder
             .client(okhttpClient)
             .baseUrl(url)
-            //java
+            //kotlin
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory())
-            //kotlin
-//            .addConverterFactory(GsonConverterFactory.create(gson))
-//            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .build()
     }
 }
