@@ -55,5 +55,7 @@ ext.versions = [
 
         sandwich        : '1.0.9',
 
+        DrawableDsl     : '0.0.3'
+
 
 ]

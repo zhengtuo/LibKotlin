@@ -1,10 +1,11 @@
-package com.drelovey.common.utils
+ package com.drelovey.common.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.Intent
 import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.os.Build
@@ -165,5 +166,10 @@ object LibUtils {
             }
             view.layoutParams = lp
         }
+    }
+
+    fun startActivity(activity: Activity, name: Class<*>) {
+        val intent = Intent(activity, name)
+        activity.startActivity(intent)
     }
 }

@@ -1,11 +1,8 @@
 package com.drelovey.realize.binding.listener
 
-import android.view.View
 import com.drelovey.common.binding.listener.BindingClickT
 import com.drelovey.common.binding.listener.BindingCommand
-import com.drelovey.common.utils.LibUtils
 import com.drelovey.realize.arouter.Router.getInstance
-import timber.log.Timber
 
 /**
  * @Author: Drelovey

@@ -83,4 +83,7 @@ dependencies {
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshiVersion"
 
     api project(":lib_kotlin")
+
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.3'
 }

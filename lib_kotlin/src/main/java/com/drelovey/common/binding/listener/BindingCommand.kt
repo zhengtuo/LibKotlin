@@ -1,11 +1,12 @@
 package com.drelovey.common.binding.listener
 
+@Suppress("unused")
 class BindingCommand<T> {
     private var click: BindingClick? = null
     private var clickT: BindingClickT<T>? = null
     private var clickRT: BindingClickRT<Boolean>? = null
 
-    private var data: T? = null
+    private var data: Any? = null
 
     //点击
     constructor(click: BindingClick) {
@@ -21,7 +22,7 @@ class BindingCommand<T> {
         this.clickT = clickT
     }
 
-    fun setData(data: T): BindingCommand<T> {
+    fun setData(data: Any): BindingCommand<T> {
         this.data = data
         return this
     }
@@ -38,14 +39,14 @@ class BindingCommand<T> {
         this.clickRT = clickRT
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun click() {
         if (canClick()) {
             if (data != null) {
-                click(data!!)
+                click(data!! as T)
             } else {
                 click?.click()
             }
-
         }
     }
 

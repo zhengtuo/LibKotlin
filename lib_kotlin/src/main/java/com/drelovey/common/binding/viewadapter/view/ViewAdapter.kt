@@ -4,21 +4,11 @@ import android.annotation.SuppressLint
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
-import androidx.databinding.BindingConversion
 import com.drelovey.common.base.viewmodel.BaseViewModel
-import com.drelovey.common.binding.listener.BindingClickT
 import com.drelovey.common.binding.listener.BindingCommand
-import com.drelovey.common.binding.listener.CommonBinding
-import com.drelovey.common.generated.callback.OnClickListener
 import com.drelovey.common.utils.launch
-import com.skydoves.whatif.whatIfMap
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.actor
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.flow
 import timber.log.Timber
-import java.sql.Time
 
 
 /**
@@ -45,15 +35,19 @@ object ViewAdapter {
         interval: Long //延时时间
     ) {
         viewModel?.launch({
-            var canClick = isDelayed
+            var canClick = true
             view.setOnClickListener {
+                val tag = view.tag
+                if (tag != null) {
+                    clickCommand?.setData(tag)
+                }
                 if (canClick) {
                     clickCommand?.click()
                     canClick = false
-                    launch {
+                    launch({
                         delay(if (interval > 0L) interval else CLICK_INTERVAL)
                         canClick = true
-                    }.start()
+                    })
                 } else if (!isDelayed) {
                     clickCommand?.click()
                 }

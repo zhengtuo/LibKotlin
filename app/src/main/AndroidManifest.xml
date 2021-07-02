@@ -29,6 +29,12 @@
 
         <activity android:name=".ui.lib.view.CoroutinesActivity" />
 
+        <activity android:name=".ui.lib.view.DrawableDslActivity" />
+
+        <activity android:name=".ui.learn.view.MeasureLayoutActivity" />
+
+        <activity android:name=".ui.learn.view.ShaderActivity" />
+
     </application>
 
 </manifest>

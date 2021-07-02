@@ -121,6 +121,9 @@ dependencies {
     //打印日志
     api "com.jakewharton.timber:timber:$versions.timber"
 
+    //放弃xml写drawable，试试DSL写法 https://github.com/forJrking/DrawableDsl
+    api "com.github.forJrking:DrawableDsl:$versions.DrawableDsl"
+
     //testImplementation : 为 test 添加依赖
     testImplementation 'junit:junit:4.13.2'
     //androidTestImplementation : 为 androidTest 添加依赖
