@@ -1,8 +1,9 @@
 package com.drelovey.realize.binding.listener
 
+import com.alibaba.android.arouter.launcher.ARouter
 import com.drelovey.common.binding.listener.BindingClickT
 import com.drelovey.common.binding.listener.BindingCommand
-import com.drelovey.realize.arouter.Router.getInstance
+
 
 /**
  * @Author: Drelovey
@@ -13,7 +14,7 @@ object CommonBinding {
     @JvmField
     var jumpClick: BindingClickT<String> = object : BindingClickT<String> {
         override fun click(t: String) {
-            getInstance().build(t).navigation()
+            ARouter.getInstance().build(t).navigation()
             //Timber.d(t)
         }
     }

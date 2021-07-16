@@ -1,6 +1,7 @@
 package com.drelovey.common.binding.listener
 
 import android.view.View
+import com.alibaba.android.arouter.launcher.ARouter
 import com.drelovey.common.utils.LibUtils.getActivityFromView
 
 object CommonBinding {
@@ -21,4 +22,15 @@ object CommonBinding {
             activity?.finish()
         }
     }
+
+    @JvmField
+    var jumpClick: BindingClickT<String> = object : BindingClickT<String> {
+        override fun click(t: String) {
+            ARouter.getInstance().build(t).navigation()
+            //Timber.d(t)
+        }
+    }
+
+    @JvmField
+    var jumpCommand = BindingCommand(jumpClick)
 }

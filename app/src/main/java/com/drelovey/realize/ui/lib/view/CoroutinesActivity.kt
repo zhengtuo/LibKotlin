@@ -2,12 +2,12 @@ package com.drelovey.realize.ui.lib.view
 
 import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.common.base.activity.BaseActivity
+import com.drelovey.common.base.activity.BaseActivity
 import com.common.data.model.Resource
 import com.drelovey.common.utils.LibUtils
 import com.drelovey.common.utils.launch
 import com.drelovey.realize.R
-import com.drelovey.realize.arouter.RouterPath
+import com.drelovey.provider.router.RouterPath
 import com.drelovey.realize.binding.listener.Callback
 import com.drelovey.realize.data.model.User
 import com.drelovey.realize.databinding.ActivityCoroutinesBinding

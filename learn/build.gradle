@@ -1,0 +1,20 @@
+plugins {
+    id 'com.android.library'
+    //id: 'com.drelovey.comswitch'
+}
+apply from: rootProject.file('libbase.gradle')
+
+android {
+    defaultConfig {
+        //ARouter
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+    }
+}
+
+dependencies {
+    api project(":Provider")
+}

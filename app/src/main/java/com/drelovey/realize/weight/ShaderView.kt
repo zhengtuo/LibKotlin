@@ -2,14 +2,14 @@ package com.drelovey.realize.weight
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
-import android.animation.TimeInterpolator
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
-import android.view.View
 import android.view.animation.AccelerateInterpolator
+import androidx.appcompat.widget.AppCompatTextView
 import com.drelovey.realize.R
 
 
@@ -17,7 +17,7 @@ import com.drelovey.realize.R
  * shader学习、练习view
  */
 @Suppress("unused")
-class ShaderView : View {
+class ShaderView : AppCompatTextView {
 
     private var paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
@@ -37,6 +37,10 @@ class ShaderView : View {
 
     private var mRadialGradient: RadialGradient? = null
 
+    private var mMatrix: Matrix =  Matrix()
+
+    var linearGradient: LinearGradient? = null
+
     constructor(context: Context) : this(context, null)
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -50,8 +54,6 @@ class ShaderView : View {
     }
 
     private fun init() {
-        //创建画笔
-        paint = Paint(Paint.ANTI_ALIAS_FLAG)
         if (mWidth == 0) mWidth = 1080
         if (mHeight == 0) mHeight = 1920
         //bitmapFactory()
@@ -59,7 +61,7 @@ class ShaderView : View {
         //sweepGradient()
         //radiusGradient()
         //composeShader()
-        waterRipple()
+        //waterRipple()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -78,7 +80,7 @@ class ShaderView : View {
                 canvas?.drawRect(0F, 0F, mWidth.toFloat(), mHeight.toFloat(), paint)
             }
             "linearGradient" -> {
-
+                canvas?.drawRect(Rect(0, 0, width, height), paint)
             }
             "radiusGradient" -> {
                 canvas?.drawCircle(
@@ -90,6 +92,11 @@ class ShaderView : View {
             }
             "waterRipple" -> {
                 canvas?.drawCircle(mX, mY, mCurRadius, paint)
+            }
+            "neonLights" -> {
+                mMatrix.reset()
+                mMatrix.preTranslate(mX, 0F)
+                linearGradient?.setLocalMatrix(mMatrix)
             }
         }
 
@@ -113,10 +120,15 @@ class ShaderView : View {
                 if (mAnimator == null) {
                     //这里第一个对象传递当前对象，在当前对象中设置了setRadius方法，所以这里传递radius
                     //每当值变化时就会调用这个setRadius方法
-                    mAnimator = ObjectAnimator.ofFloat(this, "radius", DEFAULT_RADIUS, width.toFloat())
+                    mAnimator = ObjectAnimator.ofFloat(
+                        this,
+                        "radius",
+                        DEFAULT_RADIUS,
+                        width.toFloat()
+                    )
                 }
                 mAnimator?.interpolator = AccelerateInterpolator()
-                mAnimator?.addListener(object:Animator.AnimatorListener{
+                mAnimator?.addListener(object : Animator.AnimatorListener {
                     override fun onAnimationStart(animation: Animator?) {
 
                     }
@@ -140,6 +152,12 @@ class ShaderView : View {
         return super.onTouchEvent(event)
     }
 
+    //控件改变大小
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        neonLights(w)
+    }
+
     //位图渲染
     private fun bitmapFactory() {
         modeName = "bitmapFactory"
@@ -161,9 +179,19 @@ class ShaderView : View {
 
     //线性渲染
     private fun linearGradient() {
+        modeName = "linearGradient"
+        val colors = intArrayOf(
+            0xFFFF0000.toInt(),
+            0xffFF7F00.toInt(),
+            0xffFFFF00.toInt(),
+            0xff00FF00.toInt(),
+            0xff00FFFF.toInt(),
+            0xff0000FF.toInt(),
+            0xff8B00FF.toInt()
+        )
+
         // x0,y0：渐变的起点，x1,y1：渐变的终点坐标， color0,color1：起点的颜色和终点的颜色
-        val linearGradient =
-            LinearGradient(0F, 0F, 800F, 100F, Color.RED, Color.BLACK, Shader.TileMode.CLAMP)
+        val linearGradient = LinearGradient(0F, 0F, 0F, 400F, colors, null, Shader.TileMode.CLAMP)
         paint.shader = linearGradient
 
 
@@ -172,6 +200,7 @@ class ShaderView : View {
     //梯度渐变，亦称扫描式渐变
     @Suppress("LocalVariableName", "SpellCheckingInspection")
     private fun sweepGradient() {
+        modeName = "sweepGradient"
         val gradient_colors = intArrayOf(
             Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.WHITE, Color.RED
         )
@@ -256,9 +285,38 @@ class ShaderView : View {
         mCurRadius = radius
         if (mCurRadius > 0) {
             mRadialGradient =
-                RadialGradient(mX, mY, mCurRadius, Color.parseColor("#FFFFFF"),  Color.parseColor("#58FAAC"), Shader.TileMode.CLAMP)
+                RadialGradient(mX, mY, mCurRadius, Color.WHITE, Color.GREEN, Shader.TileMode.CLAMP)
             paint.shader = mRadialGradient
         }
         invalidate()
     }
+
+    //霓虹灯效果
+    private fun neonLights(w: Int) {
+        modeName = "neonLights"
+        val colors =
+            intArrayOf(currentTextColor, Color.RED, Color.YELLOW, Color.BLUE, currentTextColor)
+
+        //设置LinearGradient,绘制的范围这里设置的是-w到w，相当于两个宽度，然后把Shader向右移动实现了效果
+        linearGradient =
+            LinearGradient(-w.toFloat(), 0F, w.toFloat(), 0F, colors, null, Shader.TileMode.CLAMP)
+        paint.shader = linearGradient
+        initAnimator(w)
+    }
+
+    @Suppress("ObjectLiteralToLambda")
+    private fun initAnimator(width: Int) {
+        val animator = ValueAnimator.ofInt(0, width * 2) //我们设置value的值为0-getMeasureWidth的3 倍
+        animator.addUpdateListener(object : ValueAnimator.AnimatorUpdateListener {
+            override fun onAnimationUpdate(animation: ValueAnimator) {
+                mX = animation.animatedValue.toString().toFloat()
+                postInvalidate()
+            }
+        })
+        animator.repeatMode = ValueAnimator.RESTART  //重新播放
+        animator.repeatCount = ValueAnimator.INFINITE   //无限循环
+        animator.duration = 2000
+        animator.start()
+    }
+
 }

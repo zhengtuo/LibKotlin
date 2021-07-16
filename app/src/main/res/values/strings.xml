@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">drelovey</string>
 
+    //tab name
+    <string name="tab_home">首页</string>
+    <string name="tab_learn">学习</string>
+    <string name="tab_up">升级</string>
+    <string name="tab_my">我的</string>
+
     //error
     <string name="error_no_internet">请检查您的网络</string>
     <string name="error_un_know">未知错误</string>
     <string name="error_empty">404</string>
     <string name="error_parameter">参数错误</string>
+
 </resources>

@@ -1,13 +1,12 @@
 package com.drelovey.realize.ui.learn.view
 
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.common.base.activity.BaseActivity
+import com.drelovey.common.base.activity.BaseActivity
 import com.drelovey.realize.R
-import com.drelovey.realize.arouter.RouterPath
+import com.drelovey.provider.router.RouterPath
 import com.drelovey.realize.databinding.ActivityMeasureLayoutBinding
 import com.drelovey.realize.ui.learn.model.NoViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @Suppress("RedundantOverride")
 /**

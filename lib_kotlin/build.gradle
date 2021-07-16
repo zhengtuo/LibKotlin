@@ -4,9 +4,10 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
+apply from: rootProject.file('libbase.gradle')
 
 android {
-    compileSdkVersion versions.compile
+    compileSdkVersion versions.compileSdk
     defaultConfig {
         minSdkVersion 21
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -122,33 +123,5 @@ dependencies {
     api "com.jakewharton.timber:timber:$versions.timber"
 
     //放弃xml写drawable，试试DSL写法 https://github.com/forJrking/DrawableDsl
-    api "com.github.forJrking:DrawableDsl:$versions.DrawableDsl"
-
-    //testImplementation : 为 test 添加依赖
-    testImplementation 'junit:junit:4.13.2'
-    //androidTestImplementation : 为 androidTest 添加依赖
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-}
-
-//监听gradle配置阶段执行完成，可以获取到project下的所有task
-//执行module的 clean :解决Failed to delete \build\.......\classes.jar
-this.project.afterEvaluate { project ->
-    def buildTask1 = project.tasks.getByName('assembleDebug')
-    def buildTask2 = project.tasks.getByName('assembleRelease')
-    def taskClean = project.tasks.findByPath("clean")
-    if (buildTask1 != null) {
-        buildTask1.doFirst {
-            taskClean.onlyIf {
-                true
-            }
-        }
-    }
-    if (buildTask2 != null) {
-        buildTask2.doFirst {
-            taskClean.onlyIf {
-                true
-            }
-        }
-    }
+    api "com.github.forJrking:DrawableDsl:$versions.drawableDsl"
 }

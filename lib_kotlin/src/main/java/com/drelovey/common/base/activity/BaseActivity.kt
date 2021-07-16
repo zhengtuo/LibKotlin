@@ -1,4 +1,4 @@
-package com.common.base.activity
+package com.drelovey.common.base.activity
 
 import android.app.Activity
 import android.content.Context
@@ -8,6 +8,7 @@ import android.os.Message
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import com.common.base.activity.BaseActivityDelegate
 import com.drelovey.common.base.viewmodel.BaseViewModel
 import com.common.data.model.Resource
 import com.drelovey.common.utils.observe

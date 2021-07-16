@@ -14,7 +14,10 @@
 // * limitations under the License.
 // */
 ext.versions = [
-        compile         : 30,
+        compileSdk      : 30,
+        buildTools      : "30.0.3",
+        minSdk          : 21,
+        targetSdk       : 30,
 
         //support
         appcompat       : "1.2.0",
@@ -47,15 +50,14 @@ ext.versions = [
 
         timber          : "4.7.1",
 
-        whatIfVersion   : '1.1.0',
+        whatIfVersion   : "1.1.0",
 
-        balloon         : '1.2.7',
+        balloon         : "1.2.7",
 
-        moshiVersion    : '1.11.0',
+        moshiVersion    : "1.11.0",
 
-        sandwich        : '1.0.9',
+        sandwich        : "1.0.9",
 
-        DrawableDsl     : '0.0.3'
-
+        drawableDsl     : "0.0.3",
 
 ]

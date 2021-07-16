@@ -3,9 +3,9 @@ package com.drelovey.realize.ui.lib.view
 import android.graphics.Color
 import androidx.core.content.ContextCompat
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.common.base.activity.BaseActivity
+import com.drelovey.common.base.activity.BaseActivity
 import com.drelovey.realize.R
-import com.drelovey.realize.arouter.RouterPath
+import com.drelovey.provider.router.RouterPath
 import com.drelovey.realize.databinding.ActivityWhatifBinding
 import com.drelovey.realize.ui.lib.viewModel.WhatIfVM
 import com.skydoves.balloon.Balloon

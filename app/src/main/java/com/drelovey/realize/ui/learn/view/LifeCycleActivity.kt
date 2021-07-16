@@ -2,8 +2,7 @@ package com.drelovey.realize.ui.learn.view
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.os.PersistableBundle
-import com.common.base.activity.BaseActivity
+import com.drelovey.common.base.activity.BaseActivity
 import com.drelovey.realize.R
 import com.drelovey.realize.databinding.ActivityNoBinding
 import com.drelovey.realize.ui.learn.model.NoViewModel

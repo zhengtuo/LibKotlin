@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="com.drelovey.realize.arouter.RouterPath" />
+        <import type="com.drelovey.provider.router.RouterPath" />
 
         <import type="com.drelovey.realize.binding.listener.CommonBinding" />
 

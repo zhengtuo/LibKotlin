@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.drelovey.realize.R" />
+
+        <variable
+            name="select"
+            type="Integer" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/tab_home"
+            android:src="@mipmap/ic_home"
+            android:tint="@{select==0?@color/color_d81e06:@color/color_7}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_home"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_home"
+            app:layout_constraintRight_toRightOf="@+id/tv_home"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:id="@+id/tv_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:gravity="center"
+            android:text="@string/tab_home"
+            android:textColor="@{select==0?@color/color_3:@color/color_7}"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tv_learn" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/tab_learn"
+            android:src="@mipmap/ic_learn"
+            android:tint="@{select==1?@color/color_d81e06:@color/color_7}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_learn"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_learn"
+            app:layout_constraintRight_toRightOf="@+id/tv_learn"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:id="@+id/tv_learn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:gravity="center"
+            android:text="@string/tab_learn"
+            android:textColor="@{select==1?@color/color_3:@color/color_7}"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tv_home"
+            app:layout_constraintRight_toLeftOf="@+id/tv_up" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/tab_up"
+            android:src="@mipmap/ic_up"
+            android:tint="@{select==2?@color/color_d81e06:@color/color_7}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_up"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_up"
+            app:layout_constraintRight_toRightOf="@+id/tv_up"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:id="@+id/tv_up"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:gravity="center"
+            android:text="@string/tab_up"
+            android:textColor="@{select==2?@color/color_3:@color/color_7}"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintLeft_toRightOf="@+id/tv_learn"
+            app:layout_constraintRight_toLeftOf="@+id/tv_my" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/tab_my"
+            android:src="@mipmap/ic_my"
+            app:layout_constraintBottom_toTopOf="@+id/tv_my"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_my"
+            app:layout_constraintRight_toRightOf="@+id/tv_my"
+            android:tint="@{select==3?@color/color_d81e06:@color/color_7}"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:id="@+id/tv_my"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:gravity="center"
+            android:text="@string/tab_my"
+            android:textColor="@{select==3?@color/color_3:@color/color_7}"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintLeft_toRightOf="@+id/tv_up"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

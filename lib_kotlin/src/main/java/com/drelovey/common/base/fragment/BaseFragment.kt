@@ -34,6 +34,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> constructor
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        initialization()
         setupListener()
         observeViewModel()
         isFirstVisible = true
@@ -55,6 +56,9 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> constructor
     override fun onDestroy() {
         super.onDestroy()
     }
+
+    //初始化方法
+    abstract fun initialization()
 
     /**
      * 事情监听器

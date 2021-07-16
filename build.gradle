@@ -9,6 +9,10 @@ buildscript {
         google()
         jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven {
+            //本地maven仓库地址
+            url uri('./repo')
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$kotlin_plugin"
@@ -19,6 +23,8 @@ buildscript {
 
         //hilt
         classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt"
+        //模块化
+        classpath 'com.drelovey.plugin:PluginSwitch:1.0.0'
     }
 }
 

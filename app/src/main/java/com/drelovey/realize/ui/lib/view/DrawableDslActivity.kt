@@ -4,9 +4,9 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.common.base.activity.BaseActivity
+import com.drelovey.common.base.activity.BaseActivity
 import com.drelovey.realize.R
-import com.drelovey.realize.arouter.RouterPath
+import com.drelovey.provider.router.RouterPath
 import com.drelovey.realize.databinding.ActivityDrawableDslBinding
 import com.drelovey.realize.ui.lib.viewModel.DrawableDslVM
 import com.github.forjrking.drawable.*
