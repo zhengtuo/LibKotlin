@@ -8,7 +8,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import com.drelovey.common.base.viewmodel.BaseViewModel
-import com.common.data.model.Resource
+import com.drelovey.common.data.model.Resource
 import com.drelovey.common.utils.observe
 import com.drelovey.common.utils.viewModelsByVM
 import com.skydoves.bindables.BindingFragment

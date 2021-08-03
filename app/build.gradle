@@ -1,13 +1,18 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'com.drelovey.comswitch'
 }
 apply from: rootProject.file('libbase.gradle')
 
+
+
 android {
+
+    buildFeatures {
+        dataBinding true
+    }
+
     defaultConfig {
         //ARouter
         kapt {
@@ -15,10 +20,6 @@ android {
                 arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
-    }
-
-    buildFeatures {
-        dataBinding true
     }
 
     buildTypes {
@@ -56,6 +57,8 @@ repositories {
     }
 }
 
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -72,9 +75,9 @@ dependencies {
 
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshiVersion"
 
-    api project(":Provider")
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-    //api project(":learn")
+    api project(":Provider")
 
     // debugImplementation because LeakCanary should only run in debug builds.
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.3'

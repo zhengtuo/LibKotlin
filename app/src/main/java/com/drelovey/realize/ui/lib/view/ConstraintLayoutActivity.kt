@@ -17,10 +17,10 @@ class ConstraintLayoutActivity :
     BaseActivity<ActivityConstraintlayoutBinding, ConstraintLayoutVM>(R.layout.activity_constraintlayout) {
 
     override fun initialization() {
-        binding {
-            lifecycleOwner = this@ConstraintLayoutActivity
-            vm = mViewModel
-        }
+//        binding {
+//            lifecycleOwner = this@ConstraintLayoutActivity
+//            vm = mViewModel
+//        }
 
         //ConstraintProperties（流式API） 2.0 提供了ConstraintProperties可以使用流式 API修改属性
         val properties = ConstraintProperties(findViewById(R.id.iv1))

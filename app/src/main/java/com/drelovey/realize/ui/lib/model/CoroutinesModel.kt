@@ -1,6 +1,6 @@
 package com.drelovey.realize.ui.lib.model
 
-import com.common.data.model.Resource
+import com.drelovey.common.data.model.Resource
 import com.drelovey.realize.data.remote.RemoteRepository
 import javax.inject.Inject
 

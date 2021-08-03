@@ -28,10 +28,10 @@ class WhatIfActivity : BaseActivity<ActivityWhatifBinding, WhatIfVM>(R.layout.ac
     var nullableString: String? = null
 
     override fun initialization() {
-        binding {
-            lifecycleOwner = this@WhatIfActivity
-            vm = mViewModel
-        }
+//        binding {
+//            lifecycleOwner = this@WhatIfActivity
+//            vm = mViewModel
+//        }
 
         // example0 : nullable Boolean true-false check.
         whatIf(nullableBoolean) {

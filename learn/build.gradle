@@ -1,20 +1,38 @@
 plugins {
-    id 'com.android.library'
-    //id: 'com.drelovey.comswitch'
+    id 'com.drelovey.comswitch'
+    //id 'com.android.library'
 }
 apply from: rootProject.file('libbase.gradle')
 
-android {
-    defaultConfig {
-        //ARouter
-        kapt {
-            arguments {
-                arg("AROUTER_MODULE_NAME", project.getName())
-            }
-        }
+//ARouter
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
     }
 }
 
+android {
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+}
+
 dependencies {
+
+    //arouter
+    kapt "com.alibaba:arouter-compiler:$versions.arouter"
+
+    //hilt
+    api "com.google.dagger:hilt-android:$versions.hilt"
+    kapt "com.google.dagger:hilt-compiler:$versions.hilt"
+    kapt "androidx.hilt:hilt-compiler:1.0.0-beta01"
+
     api project(":Provider")
 }

@@ -1,6 +1,6 @@
 package com.drelovey.realize.data.remote
 
-import com.common.data.model.Resource
+import com.drelovey.common.data.model.Resource
 import com.drelovey.common.data.error.Error.Companion.NO_INTERNET_CONNECTION
 import com.drelovey.common.data.error.Error.Companion.UN_KNOW
 import com.drelovey.common.utils.LibUtils

@@ -1,7 +1,5 @@
 package com.drelovey.realize.data.model
 
-import com.squareup.moshi.JsonClass
-
 /**
  *
 
@@ -9,7 +7,7 @@ import com.squareup.moshi.JsonClass
  * @CreateDate: 2020/1/22 16:31
  */
 //@JsonClass moshi必备
-@JsonClass(generateAdapter = true)
+//@JsonClass(generateAdapter = true)
 data class CloudClassroomEntity<T> (
 
     val code: Int = 0,

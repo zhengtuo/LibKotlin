@@ -22,10 +22,10 @@ class DrawableDslActivity : BaseActivity<ActivityDrawableDslBinding, DrawableDsl
 
 
     override fun initialization() {
-        binding {
-            lifecycleOwner = this@DrawableDslActivity
-            vm = mViewModel
-        }
+//        binding {
+//            lifecycleOwner = this@DrawableDslActivity
+//            vm = mViewModel
+//        }
 
         binding.linear.dividerDrawable = shapeDrawable {
             shape(Shape.RECTANGLE)

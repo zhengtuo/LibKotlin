@@ -1,7 +1,6 @@
-package com.drelovey.learn.ui.view
+package com.drelovey.learn
 
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
 import com.drelovey.common.app.base.fragment.BaseFragment
 import com.drelovey.common.base.viewmodel.EmptyViewModel
 import com.drelovey.learn.R
@@ -12,7 +11,7 @@ import com.drelovey.provider.router.RouterPath
 class LearnFragment: BaseFragment<FragmentHomeBinding, EmptyViewModel>(R.layout.fragment_home){
 
     override fun initialization() {
-        ARouter.getInstance().inject(this)
+
     }
 
 }

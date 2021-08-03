@@ -4,7 +4,7 @@ package com.drelovey.common.base.viewmodel
 
 import android.os.Message
 import androidx.lifecycle.MutableLiveData
-import com.common.data.model.Resource
+import com.drelovey.common.data.model.Resource
 import com.drelovey.common.data.error.ErrorMapper
 import com.drelovey.common.livedata.SingleLiveEvent
 import com.drelovey.common.manager.errors.ErrorManager

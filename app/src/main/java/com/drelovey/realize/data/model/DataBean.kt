@@ -1,14 +1,12 @@
 package com.drelovey.realize.data.model
 
 import android.os.Parcelable
-import androidx.room.Entity
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
 
 
 @Parcelize
-@JsonClass(generateAdapter = true)
+//@JsonClass(generateAdapter = true)
 data class DataBean(
 
     /**

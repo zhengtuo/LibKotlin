@@ -1,4 +1,4 @@
-package com.common.data.model
+package com.drelovey.common.data.model
 
 /**
  *

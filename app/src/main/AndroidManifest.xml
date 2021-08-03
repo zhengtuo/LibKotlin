@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
+        tools:replace="android:allowBackup,android:theme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name="com.drelovey.realize.ui.main.view.MainActivity">
             <intent-filter>
