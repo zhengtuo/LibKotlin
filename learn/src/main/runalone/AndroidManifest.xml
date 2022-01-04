@@ -8,11 +8,11 @@
         android:name=".app.LearnApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Drelovey_lib"
+        android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:ignore="AllowBackup">
 
         <activity
-            android:name=".TestActivity"
+            android:name=".LearnActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

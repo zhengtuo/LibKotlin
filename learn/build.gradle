@@ -12,6 +12,7 @@ kapt {
 }
 
 android {
+
     buildFeatures {
         dataBinding true
     }
@@ -21,18 +22,18 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
 
 }
 
 dependencies {
 
+    api project(":Provider")
+
     //arouter
     kapt "com.alibaba:arouter-compiler:$versions.arouter"
 
-    //hilt
-    api "com.google.dagger:hilt-android:$versions.hilt"
-    kapt "com.google.dagger:hilt-compiler:$versions.hilt"
-    kapt "androidx.hilt:hilt-compiler:1.0.0-beta01"
-
-    api project(":Provider")
 }

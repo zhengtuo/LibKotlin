@@ -24,17 +24,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.lib.view.ConstraintLayoutActivity" />
+        <activity android:name="com.drelovey.practice.ui.lib.view.ConstraintLayoutActivity" />
 
-        <activity android:name=".ui.lib.view.WhatIfActivity" />
+        <activity android:name="com.drelovey.practice.ui.lib.view.WhatIfActivity" />
 
-        <activity android:name=".ui.lib.view.CoroutinesActivity" />
+        <activity android:name="com.drelovey.practice.ui.lib.view.CoroutinesActivity" />
 
-        <activity android:name=".ui.lib.view.DrawableDslActivity" />
-
-        <activity android:name=".ui.learn.view.MeasureLayoutActivity" />
-
-        <activity android:name=".ui.learn.view.ShaderActivity" />
+        <activity android:name="com.drelovey.practice.ui.lib.view.DrawableDslActivity" />
 
     </application>
 

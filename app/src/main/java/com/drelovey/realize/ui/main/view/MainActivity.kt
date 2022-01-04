@@ -32,5 +32,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(R.layout.activity
             bt.add(R.id.container, mLearnFragment as Fragment)
         }
 
+        ARouter.getInstance().build(RouterPath.PATH_MEASURE_LAYOUT).navigation()
+        bt.commit()
     }
+
+
+
 }

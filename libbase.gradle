@@ -1,6 +1,7 @@
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+//替代kotlin-android-extensions
 apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
 android {
 
     compileSdkVersion versions.compileSdk
@@ -26,7 +27,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 repositories {

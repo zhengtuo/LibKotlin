@@ -6,7 +6,7 @@ import com.drelovey.learn.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
 
 
-@HiltAndroidApp
+
 class LearnApplication : Application() {
     override fun onCreate() {
         super.onCreate()

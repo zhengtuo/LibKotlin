@@ -25,7 +25,7 @@ class ConvertUtils {
                             if (className == "META-INF.versions.9.module-info") {
                                 return
                             }
-                            throw new RuntimeException("You have duplicate classes with the same name : " + className + " please remove duplicate classes "+it.file.absolutePath)
+                            throw new RuntimeException("You have duplicate classes with the same name : " + className + " please remove duplicate classes ")
                         }
                         classNames.add(className)
                     }
@@ -45,7 +45,7 @@ class ConvertUtils {
                             if (className == "META-INF.versions.9.module-info") {
                                 return
                             }
-                            throw new RuntimeException("You have duplicate classes with the same name : " + className + " please remove duplicate classes "+it.file.absolutePath)
+                            throw new RuntimeException("You have duplicate classes with the same name : " + className + " please remove duplicate classes ")
                         }
                         classNames.add(className)
                     }

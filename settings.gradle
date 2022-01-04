@@ -1,6 +1,6 @@
+include ':practice'
 include ':learn'
 include ':Provider'
 include ':lib_kotlin'
 include ':app'
 include ':PluginSwitch'
-rootProject.name = "drelovey_lib"

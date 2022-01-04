@@ -1,0 +1,35 @@
+plugins {
+    id 'com.drelovey.comswitch'
+    //id 'com.android.library'
+}
+apply from: rootProject.file('libbase.gradle')
+
+//ARouter
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+}
+
+dependencies {
+
+    api project(":Provider")
+
+    //arouter
+    kapt "com.alibaba:arouter-compiler:$versions.arouter"
+
+}
