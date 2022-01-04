@@ -21,7 +21,9 @@ object RouterPath {
     const val PATH_MEASURE_LAYOUT = "/learn/measure_layout"
     const val PATH_SHADER = "/learn/shader"
     const val PATH_LEARN = "/learn/learn_fragment"
+    //interview
     const val PATH_INTERVIEW = "/learn/interview"
+    const val PATH_INTERVIEW_COLLECTION = "/learn/interview/collection"
 
 
 }

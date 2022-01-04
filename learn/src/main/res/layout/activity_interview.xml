@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="@{RouterPath.PATH_INTERVIEW}"
-                android:text="@string/java"
+                android:text="@string/collection"
                 app:isDelayed="@{true}"
                 app:onClickCommand="@{CommonBinding.jumpCommand}"
                 app:viewModel="@{vm}" />
