@@ -11,6 +11,8 @@
 
         <activity android:name=".ui.learn.view.ShaderActivity" />
 
+        <activity android:name=".ui.interview.view.InterviewActivity" />
+
     </application>
 
 </manifest>

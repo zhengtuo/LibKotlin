@@ -11,6 +11,10 @@
             name="select"
             type="Integer" />
 
+        <variable
+            name="vm"
+            type="com.drelovey.realize.ui.main.viewModel.MainVM" />
+
 
     </data>
 
@@ -21,34 +25,10 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/tab_home"
-            android:src="@mipmap/ic_home"
-            android:tint="@{select==0?@color/color_d81e06:@color/color_7}"
-            app:layout_constraintBottom_toTopOf="@+id/tv_home"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_home"
-            app:layout_constraintRight_toRightOf="@+id/tv_home"
-            tools:ignore="UseAppTint" />
-
-        <TextView
-            android:id="@+id/tv_home"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp_5"
-            android:gravity="center"
-            android:text="@string/tab_home"
-            android:textColor="@{select==0?@color/color_3:@color/color_7}"
-            android:textSize="@dimen/sp_12"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/tv_learn" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:contentDescription="@string/tab_learn"
+            android:onClick="@{() -> vm.setSelect(0)}"
             android:src="@mipmap/ic_learn"
-            android:tint="@{select==1?@color/color_d81e06:@color/color_7}"
+            android:tint="@{select==0?@color/color_d81e06:@color/color_7}"
             app:layout_constraintBottom_toTopOf="@+id/tv_learn"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintLeft_toLeftOf="@+id/tv_learn"
@@ -61,49 +41,27 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp_5"
             android:gravity="center"
+            android:onClick="@{() -> vm.setSelect(0)}"
             android:text="@string/tab_learn"
-            android:textColor="@{select==1?@color/color_3:@color/color_7}"
+            android:textColor="@{select==0?@color/color_d81e06:@color/color_7}"
             android:textSize="@dimen/sp_12"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/tv_home"
-            app:layout_constraintRight_toLeftOf="@+id/tv_up" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/tab_up"
-            android:src="@mipmap/ic_up"
-            android:tint="@{select==2?@color/color_d81e06:@color/color_7}"
-            app:layout_constraintBottom_toTopOf="@+id/tv_up"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_up"
-            app:layout_constraintRight_toRightOf="@+id/tv_up"
-            tools:ignore="UseAppTint" />
-
-        <TextView
-            android:id="@+id/tv_up"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp_5"
-            android:gravity="center"
-            android:text="@string/tab_up"
-            android:textColor="@{select==2?@color/color_3:@color/color_7}"
-            android:textSize="@dimen/sp_12"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintLeft_toRightOf="@+id/tv_learn"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/tv_my" />
 
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/tab_my"
-            android:src="@mipmap/ic_my"
+            android:contentDescription="@string/tab_interview"
+            android:onClick="setSelect"
+            android:src="@mipmap/ic_interview"
+            android:tag="@{1}"
+            android:tint="@{select==1?@color/color_d81e06:@color/color_7}"
             app:layout_constraintBottom_toTopOf="@+id/tv_my"
             app:layout_constraintLeft_toLeftOf="@+id/tv_my"
             app:layout_constraintRight_toRightOf="@+id/tv_my"
-            android:tint="@{select==3?@color/color_d81e06:@color/color_7}"
-            tools:ignore="UseAppTint" />
+            tools:ignore="UseAppTint,UsingOnClickInXml" />
 
         <TextView
             android:id="@+id/tv_my"
@@ -111,13 +69,16 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp_5"
             android:gravity="center"
-            android:text="@string/tab_my"
-            android:textColor="@{select==3?@color/color_3:@color/color_7}"
+            android:onClick="setSelect"
+            android:tag="@{1}"
+            android:text="@string/tab_practice"
+            android:textColor="@{select==1?@color/color_d81e06:@color/color_7}"
             android:textSize="@dimen/sp_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintLeft_toRightOf="@+id/tv_up"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintLeft_toRightOf="@+id/tv_learn"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="UsingOnClickInXml" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

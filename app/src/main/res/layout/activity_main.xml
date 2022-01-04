@@ -32,7 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:select="@{0}" />
+            app:select="@{vm.MSelect}"
+            app:vm="@{vm}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

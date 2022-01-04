@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -22,59 +22,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".ui.main.view.MainActivity">
+            android:orientation="vertical">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="@{RouterPath.PATH_SHADER}"
-                android:text="shader(着色器)"
-                app:onClickCommand="@{CommonBinding.jumpCommand.setData(RouterPath.PATH_MEASURE_LAYOUT)}"
+                android:tag="@{RouterPath.PATH_INTERVIEW}"
+                android:text="@string/interview"
+                app:isDelayed="@{true}"
+                app:onClickCommand="@{CommonBinding.jumpCommand}"
                 app:viewModel="@{vm}" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tag="@{RouterPath.PATH_MEASURE_LAYOUT}"
-                android:text="measure_layout"
-                app:onClickCommand="@{CommonBinding.jumpCommand.setData(RouterPath.PATH_MEASURE_LAYOUT)}"
-                app:viewModel="@{vm}" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tag="@{RouterPath.PATH_DRAWABLE_DSL}"
-                android:text="drawable_dsl"
-
-                app:onClickCommand="@{CommonBinding.jumpCommand.setData(RouterPath.PATH_DRAWABLE_DSL)}"
-                app:viewModel="@{vm}" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AOP测试"
-
-                app:onClickCommand="@{CommonBinding.jumpCommand.setData(RouterPath.PATH_COROUTINES)}"
-                app:viewModel="@{vm}" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> CommonBinding.jumpClick.click(RouterPath.PATH_COROUTINES)}"
-                android:text="协程" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> CommonBinding.jumpClick.click(RouterPath.PATH_WHATIF)}"
-                android:text="whatif" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> CommonBinding.jumpClick.click(RouterPath.PATH_CONSTRAINT)}"
-                android:text="ConstraintLayout" />
 
         </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.drelovey.realize.ui.main.view
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.drelovey.common.base.activity.BaseActivity
@@ -32,10 +33,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(R.layout.activity
             bt.add(R.id.container, mLearnFragment as Fragment)
         }
 
-        ARouter.getInstance().build(RouterPath.PATH_MEASURE_LAYOUT).navigation()
         bt.commit()
     }
 
-
+    fun setSelect(view: View) {
+        val select = view.tag as Int
+        mViewModel.setSelect(select)
+    }
 
 }

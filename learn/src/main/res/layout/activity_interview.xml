@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.drelovey.provider.router.RouterPath" />
+
+        <import type="com.drelovey.common.binding.listener.CommonBinding" />
+
+        <variable
+            name="vm"
+            type="com.drelovey.common.base.viewmodel.EmptyViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_30"
+                android:textColor="@color/color_3"
+                android:text="@string/java"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="@{RouterPath.PATH_INTERVIEW}"
+                android:text="@string/java"
+                app:isDelayed="@{true}"
+                app:onClickCommand="@{CommonBinding.jumpCommand}"
+                app:viewModel="@{vm}" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="@{RouterPath.PATH_INTERVIEW}"
+                android:text="@string/android"
+                app:isDelayed="@{true}"
+                app:onClickCommand="@{CommonBinding.jumpCommand}"
+                app:viewModel="@{vm}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_30"
+                android:textColor="@color/color_3"
+                android:text="@string/android"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</layout>

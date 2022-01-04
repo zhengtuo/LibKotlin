@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">learn</string>
+
+    <string name="interview">面试</string>
+
+    <string name="java">Java</string>
+    <string name="android">Android</string>
+    <string name="collection">Collection</string>
 </resources>

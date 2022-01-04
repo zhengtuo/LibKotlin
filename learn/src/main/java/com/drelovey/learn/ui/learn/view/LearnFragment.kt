@@ -13,7 +13,10 @@ import com.drelovey.provider.router.RouterPath
 class LearnFragment: BaseFragment<FragmentLearnBinding, EmptyViewModel>(R.layout.fragment_learn){
 
     override fun initialization() {
-
+        binding {
+            lifecycleOwner = this@LearnFragment
+            vm = mViewModel
+        }
     }
 
 }

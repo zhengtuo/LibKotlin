@@ -3,9 +3,9 @@
     package="com.drelovey.learn">
 
     <application
+        android:name=".app.LearnApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".app.LearnApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
@@ -20,6 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.interview.view.InterviewActivity" />
 
     </application>
 

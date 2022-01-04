@@ -27,7 +27,6 @@ object CommonBinding {
     var jumpClick: BindingClickT<String> = object : BindingClickT<String> {
         override fun click(t: String) {
             ARouter.getInstance().build(t).navigation()
-            //Timber.d(t)
         }
     }
 

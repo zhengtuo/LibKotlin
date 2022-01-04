@@ -24,14 +24,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.drelovey.practice.ui.lib.view.ConstraintLayoutActivity" />
-
-        <activity android:name="com.drelovey.practice.ui.lib.view.WhatIfActivity" />
-
-        <activity android:name="com.drelovey.practice.ui.lib.view.CoroutinesActivity" />
-
-        <activity android:name="com.drelovey.practice.ui.lib.view.DrawableDslActivity" />
-
     </application>
 
 </manifest>

@@ -18,7 +18,7 @@ import timber.log.Timber
 object ViewAdapter {
 
     //防重复点击间隔(秒)
-    const val CLICK_INTERVAL = 1500L
+    private const val CLICK_INTERVAL = 1500L
 
     @SuppressLint("CheckResult")
     @JvmStatic
@@ -31,23 +31,23 @@ object ViewAdapter {
         view: View,
         clickCommand: BindingCommand<*>?,
         viewModel: BaseViewModel?, //作用域 反正内存泄露
-        isDelayed: Boolean, //是否启动
+        isDelayed: Boolean, //是否启用
         interval: Long //延时时间
     ) {
         viewModel?.launch({
             var canClick = true
             view.setOnClickListener {
-                val tag = view.tag
-                if (tag != null) {
-                    clickCommand?.setData(tag)
-                }
                 if (canClick) {
-                    clickCommand?.click()
                     canClick = false
                     launch({
                         delay(if (interval > 0L) interval else CLICK_INTERVAL)
                         canClick = true
                     })
+                    val tag = view.tag
+                    if (tag != null) {
+                        clickCommand?.setData(tag)
+                        clickCommand?.click()
+                    }
                 } else if (!isDelayed) {
                     clickCommand?.click()
                 }
