@@ -4,6 +4,8 @@
     <string name="interview">面试</string>
 
     <string name="java">Java</string>
-    <string name="android">Android</string>
     <string name="collection">Collection</string>
+    <string name="reflect">Reflect</string>
+    <string name="android">Android</string>
+
 </resources>

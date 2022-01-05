@@ -3,23 +3,8 @@
     package="com.drelovey.practice">
 
     <application
-        android:name=".app.PracticeApplication"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Design.Light.NoActionBar"
-        tools:ignore="AllowBackup">
 
-        <activity
-            android:name=".PracticeActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        tools:targetApi="n">
 
     </application>
 

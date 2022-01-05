@@ -12,6 +12,7 @@
         <activity android:name=".ui.learn.view.ShaderActivity" />
 
         <activity android:name=".ui.interview.view.InterviewActivity" />
+        <activity android:name=".ui.interview.view.CollectionActivity" />
 
     </application>
 
