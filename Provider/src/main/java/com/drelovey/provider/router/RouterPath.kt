@@ -24,6 +24,7 @@ object RouterPath {
     //interview
     const val PATH_INTERVIEW = "/learn/interview"
     const val PATH_INTERVIEW_COLLECTION = "/learn/interview/collection"
+    const val PATH_INTERVIEW_REFLECT = "/learn/interview/reflect"
 
 
     //practice

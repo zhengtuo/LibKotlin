@@ -77,6 +77,9 @@ dependencies {
 
     api project(":Provider")
 
+    api project(":learn")
+    api project(":practice")
+
     kapt 'com.github.skydoves:colorpickerview:2.2.4'
 
     // debugImplementation because LeakCanary should only run in debug builds.
