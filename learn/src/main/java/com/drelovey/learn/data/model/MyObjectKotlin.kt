@@ -1,10 +1,13 @@
 package com.drelovey.learn.data.model
 
-
+//反射测试类
 @Suppress("ConvertSecondaryConstructorToPrimary", "RedundantVisibilityModifier")
-public class MyObject {
+class MyObjectKotlin {
     var num = 0
-    var id = 1
+
+    companion object {
+        const val id = 1
+    }
 
     constructor(num: Int) {
         this.num = num

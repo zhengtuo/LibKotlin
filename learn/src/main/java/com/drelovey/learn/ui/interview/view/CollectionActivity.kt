@@ -5,7 +5,7 @@ import com.drelovey.common.base.activity.BaseActivity
 import com.drelovey.common.base.viewmodel.EmptyViewModel
 import com.drelovey.common.databinding.ActivityNoBinding
 import com.drelovey.learn.R
-import com.drelovey.learn.data.model.MyObject
+import com.drelovey.learn.data.model.MyObjectKotlin
 import com.drelovey.provider.router.RouterPath
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -68,14 +68,14 @@ class CollectionActivity :
     //比如int a = 1;a就是变量的命名，1就是变量的值。而当变量指向一个对象时，这个变量就被称为引用变量
     //比如A a = new A(); a就是引用变量，它指向了一个A对象，也可以说它引用了一个A对象。我们通过操纵这个a来操作A对象。此时，变量a的值为它所引用对象的地址。
     private fun objectIterator() {
-        val mutableArrayList: MutableCollection<MyObject> = ArrayList()
+        val mutableArrayList: MutableCollection<MyObjectKotlin> = ArrayList()
         for (i in 0..9) {
-            mutableArrayList.add(MyObject(i))
+            mutableArrayList.add(MyObjectKotlin(i))
         }
 
         println("mutableArrayList$mutableArrayList")
         //集合元素的值传给了迭代变量，仅仅传递了对象引用。保存的仅仅是指向对象内存空间的地址
-        val iterator: MutableIterator<MyObject> = mutableArrayList.iterator()
+        val iterator: MutableIterator<MyObjectKotlin> = mutableArrayList.iterator()
         while (iterator.hasNext()) {
             val myObject = iterator.next()
             myObject.num = 99
