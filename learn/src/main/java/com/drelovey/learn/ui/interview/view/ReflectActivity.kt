@@ -159,17 +159,21 @@ open class ReflectActivity :
 
     //调用类的方法
     private fun callMethod() {
-        val class1 = Class.forName("com.drelovey.learn.data.model.MyObjectJava")
-        // 生成新的对象：用newInstance()方法
-        val obj = class1.newInstance()
-        //首先需要获得与该方法对应的Method对象
-        val method = class1.getDeclaredMethod("setAge", Int::class.javaPrimitiveType)
-        //调用指定的函数并传递参数
-        method.invoke(obj, 28)
-        //当通过Method的invoke()方法来调用对应的方法时,Java会要求程序必须有调用该方法的权限。
-        //如果程序确实需要调用某个对象的private方法，则可以先调用Method对象的如下方法。setAccessible(boolean flag):将Method对象的acessible设置为指定的布尔值。
-        //值为true,指示该Method在使用时应该取消Java语言的访问权限检查;值为false,则知识该Method在使用时要实施Java语言的访问权限检查。
 
+        try {
+            val class1 = Class.forName("com.drelovey.learn.data.model.MyObjectJava")
+            // 生成新的对象：用newInstance()方法
+            val obj = class1.newInstance()
+            //首先需要获得与该方法对应的Method对象
+            val method = class1.getDeclaredMethod("setAge", Int::class.javaPrimitiveType)
+            //调用指定的函数并传递参数
+            method.invoke(obj, 28)
+            //当通过Method的invoke()方法来调用对应的方法时,Java会要求程序必须有调用该方法的权限。
+            //如果程序确实需要调用某个对象的private方法，则可以先调用Method对象的如下方法。setAccessible(boolean flag):将Method对象的acessible设置为指定的布尔值。
+            //值为true,指示该Method在使用时应该取消Java语言的访问权限检查;值为false,则知识该Method在使用时要实施Java语言的访问权限检查。
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
     }
 
@@ -179,15 +183,21 @@ open class ReflectActivity :
         //2.Field提供了两组方法来读取或设置成员变量的值：getXXX(Object obj)获取obj对象的该成员变量的值。此处的XXX对应8种基本类型。
         //如果该成员变量setXXX(Object obj,XXX val);将obj对象的该成员变量设置成val值。
 
-        val class1 = Class.forName("com.drelovey.learn.data.model.MyObjectJava")
+        try {
+            val class1 = Class.forName("com.drelovey.learn.data.model.MyObjectJava")
 
-        //生成新的对象:用newInstance()方法
-        val obj = class1.newInstance()
-        //获取id成员变量
-        val field = class1.getField("id")
-        //将obj对象的id的值设置为10
-        field.setInt(obj, 10)
-        //获取obj对象的id的值
-        field.getInt(obj)
+            //生成新的对象:用newInstance()方法
+            val obj = class1.newInstance()
+            //获取id成员变量
+            val field = class1.getField("id")
+            //将obj对象的id的值设置为10
+            field.setInt(obj, 10)
+            //获取obj对象的id的值
+            field.getInt(obj)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+
     }
 }

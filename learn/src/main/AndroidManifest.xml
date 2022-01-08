@@ -15,6 +15,7 @@
         <activity android:name=".ui.interview.view.InterviewActivity" />
         <activity android:name=".ui.interview.view.CollectionActivity" />
         <activity android:name=".ui.interview.view.ReflectActivity" />
+        <activity android:name=".ui.interview.view.DeadLockActivity" />
 
     </application>
 

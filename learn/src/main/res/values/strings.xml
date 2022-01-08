@@ -6,6 +6,8 @@
     <string name="java">Java</string>
     <string name="collection">Collection</string>
     <string name="reflect">Reflect</string>
+    <string name="deadlock">DeadLock</string>
+    <string name="static_deadlock">StaticDeadLock</string>
     <string name="android">Android</string>
 
 </resources>
