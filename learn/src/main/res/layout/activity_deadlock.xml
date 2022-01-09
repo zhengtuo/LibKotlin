@@ -25,8 +25,19 @@
             android:id="@+id/bt_static"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/static_deadlock"
-            />
+            android:text="@string/static_deadlock" />
+
+        <Button
+            android:id="@+id/bt_dynamic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dynamic_deadlock" />
+
+        <Button
+            android:id="@+id/bt_object"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/object_deadlock" />
 
     </LinearLayout>
 

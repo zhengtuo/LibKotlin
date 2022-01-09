@@ -8,6 +8,8 @@
     <string name="reflect">Reflect</string>
     <string name="deadlock">DeadLock</string>
     <string name="static_deadlock">StaticDeadLock</string>
+    <string name="dynamic_deadlock">DynamicDeadLock</string>
+    <string name="object_deadlock">ObjectDeadLock</string>
     <string name="android">Android</string>
 
 </resources>

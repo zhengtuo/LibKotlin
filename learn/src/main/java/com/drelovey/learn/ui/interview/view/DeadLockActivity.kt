@@ -17,6 +17,12 @@ class DeadLockActivity :
     // 加时赛锁
     val tieLock = Any()
 
+    var thread1: Thread? = null
+    var thread2: Thread? = null
+
+    var accountA: Account? = null
+    var accountB: Account? = null
+
     override fun initialization() {
         binding {
             lifecycleOwner = this@DeadLockActivity
@@ -25,7 +31,61 @@ class DeadLockActivity :
         initDeadLock()
 
         binding.btStatic.setOnClickListener {
-            staticStateDeadLock()
+            thread1 = Thread {
+                while (true) {
+                    a()
+                    if (thread1 != null && thread1!!.isInterrupted) {
+                        break
+                    }
+                }
+            }.apply {
+                start()
+            }
+
+            thread2 = Thread {
+                while (true) {
+                    b()
+                    if (thread2 != null && thread2!!.isInterrupted) {
+                        break
+                    }
+                }
+            }.apply {
+                start()
+            }
+        }
+
+        binding.btDynamic.setOnClickListener {
+            thread1 = Thread {
+                while (true) {
+                    transefMoney2(accountA!!, accountB!!, 5.0)
+                    if (thread1 != null && thread1!!.isInterrupted) {
+                        break
+                    }
+                    try {
+                        Thread.sleep(1000)
+                    } catch (e: Exception) {
+                        break
+                    }
+                }
+            }.apply {
+                start()
+            }
+
+            thread2 = Thread {
+                while (true) {
+                    transefMoney2(accountB!!, accountA!!, 5.0)
+                    if (thread2 != null && thread2!!.isInterrupted) {
+                        break
+                    }
+                    try {
+                        Thread.sleep(1200)
+                    } catch (e: Exception) {
+                        break
+                    }
+                }
+            }.apply {
+                start()
+            }
         }
     }
 
@@ -37,6 +97,7 @@ class DeadLockActivity :
         //静态的锁顺序死锁,动态的锁顺序死锁,协作对象之间发生的死锁。
 
         staticStateDeadLock()
+        dynamicStateDeadLock()
     }
 
     fun condition() {
@@ -52,8 +113,8 @@ class DeadLockActivity :
     private fun staticStateDeadLock() {
         //a和b两个方法都需要获得A锁和B锁。
         //一个线程执行a方法且已经获得了A锁,在等待B锁;另一个线程执行了b方法且已经获得了B锁,在等待A锁。这种状态,就是发生了静态的锁顺序死锁。
-        a()
-        b()
+        //a()
+        //b()
     }
 
     //可能发生静态锁顺序死锁的代码
@@ -78,11 +139,19 @@ class DeadLockActivity :
 
     //解决静态的锁顺序死锁的方法就是：所有需要多个锁的线程，都要以相同的顺序来获得锁。
     private fun a2() {
-        synchronized(lockA) { synchronized(lockB) { println("function a") } }
+        synchronized(lockA) {
+            synchronized(lockB) {
+                println("function a")
+            }
+        }
     }
 
     private fun b2() {
-        synchronized(lockA) { synchronized(lockB) { println("function b") } }
+        synchronized(lockA) {
+            synchronized(lockB) {
+                println("function b")
+            }
+        }
     }
 
     //动态的锁顺序死锁
@@ -91,9 +160,12 @@ class DeadLockActivity :
         //如下代码,一个线程调用了transferMoney方法并传入参数accountA,accountB;
         //另一个线程调用了transferMoney方法并传入参数accountA,accountB;另一个线程调用了transferMoney方法并传入参数accountB,accountA。
         //此时就可能发生在静态的锁顺序死锁中存在的问题,即：第一个线程获得了accountA锁并等待accountB锁,第二个线程获得了accountB锁并等待accountA锁。
+
+        accountA = Account()
+        accountB = Account()
     }
 
-    fun transefMoney(fromAccount: Account, toAccount: Account, amount: Double) {
+    private fun transefMoney(fromAccount: Account, toAccount: Account, amount: Double) {
         synchronized(fromAccount) {
             synchronized(toAccount) {
                 if (fromAccount < amount) {
@@ -102,6 +174,7 @@ class DeadLockActivity :
                     fromAccount.minus(amount)
                     toAccount.add(amount)
                 }
+                println("function transefMoney" + fromAccount.moneycount)
             }
         }
     }
@@ -115,6 +188,7 @@ class DeadLockActivity :
                     fromAccount.minus(amount)
                     toAccount.add(amount)
                 }
+                println("function transefMoney" + fromAccount.moneycount)
             }
         }
 
@@ -134,7 +208,6 @@ class DeadLockActivity :
                 }
             }
         } else {
-            // 加时赛锁
             synchronized(tieLock) {
                 synchronized(fromAccount) {
                     synchronized(toAccount) {
@@ -143,5 +216,16 @@ class DeadLockActivity :
                 }
             }
         }
+    }
+
+    //协作对象之间发生的死锁
+    private fun cooperationObjectDeadLock() {
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        thread1?.interrupt()
+        thread2?.interrupt()
     }
 }
