@@ -1,7 +1,5 @@
 package com.drelovey.learn.data.model
 
-import android.media.Image
-
 
 //反射测试类
 class Dispatcher {
@@ -11,12 +9,21 @@ class Dispatcher {
     constructor() {
         taxis = HashSet()
         availableTaxis = HashSet()
-
     }
 
     @Synchronized
     fun notifyAvailable(taxi: Taxi) {
         availableTaxis?.add(taxi)
+    }
+
+    @Synchronized
+    fun getImage(): Image {
+        val image = Image()
+        taxis?.forEach { t ->
+            image.drawMarker(t.getLocation())
+        }
+        println("object getImage")
+        return image
     }
 
 

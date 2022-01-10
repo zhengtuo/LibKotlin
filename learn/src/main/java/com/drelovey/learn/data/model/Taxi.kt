@@ -1,15 +1,27 @@
 package com.drelovey.learn.data.model
 
 import android.graphics.Point
-import okhttp3.Dispatcher
 
-//反射测试类
 class Taxi {
-    private val location: Point? = null
-    private  var destination: Point? = null
-    private val dispatcher: Dispatcher? = null
+    private var location: Point? = null
+    private var destination: Point? = null
+    private var dispatcher: Dispatcher? = null
 
-    fun Taxi(dispatcher: Dispatcher?) {
+    constructor(dispatcher: Dispatcher){
+        this.dispatcher = dispatcher
+    }
 
+    @Synchronized
+    fun getLocation(): Point {
+        return location ?: Point()
+    }
+
+    @Synchronized
+    fun setLocation(location: Point) {
+        this.location = location
+        if (location == destination) {
+            dispatcher?.notifyAvailable(this)
+        }
+        println("object setLocation")
     }
 }

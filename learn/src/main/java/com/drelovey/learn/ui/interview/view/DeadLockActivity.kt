@@ -1,10 +1,13 @@
 package com.drelovey.learn.ui.interview.view
 
+import android.graphics.Point
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.drelovey.common.base.activity.BaseActivity
 import com.drelovey.common.base.viewmodel.EmptyViewModel
 import com.drelovey.learn.R
 import com.drelovey.learn.data.model.Account
+import com.drelovey.learn.data.model.Dispatcher
+import com.drelovey.learn.data.model.Taxi
 import com.drelovey.learn.databinding.ActivityDeadlockBinding
 import com.drelovey.provider.router.RouterPath
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +25,9 @@ class DeadLockActivity :
 
     var accountA: Account? = null
     var accountB: Account? = null
+
+    var dispatcher: Dispatcher? = null
+    var taxi: Taxi? = null
 
     override fun initialization() {
         binding {
@@ -82,6 +88,43 @@ class DeadLockActivity :
                     } catch (e: Exception) {
                         break
                     }
+                }
+            }.apply {
+                start()
+            }
+        }
+
+        binding.btObject.setOnClickListener {
+            dispatcher = Dispatcher()
+            taxi = Taxi(dispatcher!!)
+            thread1 = Thread {
+                while (true) {
+                    taxi?.setLocation(Point(1, 2))
+                    if (thread2 != null && thread2!!.isInterrupted) {
+                        break
+                    }
+//                    try {
+//                        Thread.sleep(1000)
+//                    } catch (e: Exception) {
+//                        break
+//                    }
+                }
+
+            }.apply {
+                start()
+            }
+
+            thread2 = Thread {
+                while (true) {
+                    dispatcher?.getImage()
+                    if (thread2 != null && thread2!!.isInterrupted) {
+                        break
+                    }
+//                    try {
+//                        Thread.sleep(1200)
+//                    } catch (e: Exception) {
+//                        break
+//                    }
                 }
             }.apply {
                 start()
@@ -220,7 +263,8 @@ class DeadLockActivity :
 
     //协作对象之间发生的死锁
     private fun cooperationObjectDeadLock() {
-
+        //有时,死锁并不会那么明显,比如两个相互协作的类之间的死锁,比如下面的代码：一个线程调用了Taxi对象的setLocation方法,另一个线程调用了Dispatcher对象的getImage方法。
+        //此时可能会发生,第一个线程持有Taxi对象锁并等待Dispatcher对象锁,另一个线程持有Dispatcher对象并等待Taxi对象锁。
     }
 
     override fun onDestroy() {
